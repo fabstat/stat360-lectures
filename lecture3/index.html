@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>STAT 360 Lecture 3</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+	<section>
+	  Counting and Probability of Events
+	  <br><img src="img/sheep.jpg" width="500px"><br>
+	  STAT 360 - Lecture 3
+	</section>
+	<section>
+	  <h4>What we will cover we will cover today:</h4>
+	  <ul>
+	    <li class="fragment">Multiplication Rule (2.3)</li>
+	    <li class="fragment">Permutations (2.3)</li>
+	    <li class="fragment">Combinations (2.3)</li>
+	    <li class="fragment">The Probability of an Event (2.4)</li>
+	  </ul>
+	</section>
+	<section>	  
+	  <section>
+	    <h4>Multiplication Rule</h4>
+	    <p>We use the multiplication rule whenever we have multiple "moving parts" but they combine to form one outcome.</p>
+	    <p class="fragment">For example, you are going to a party and have narrowed down your clothing to 4 shirts, 3 pants, 2 pairs of shoes, and 2 hats. You can only wear one of each to the party. How many different ensembles can you create?</p>
+	  </section>
+	  <section data-background-image="img/hatshoe.jpg" data-background-opacity=".3">
+	  <h4>Multiplication Rule</h4>
+	  Let's see...
+	  <ol>
+	    <li class="fragment">With the fedora:
+	      <ol>
+		<li class="fragment">you can wear any of the shirts, say you pick the black one. With the black shirt...</li>
+		<li class="fragment">pants, say you pick the green one. With the green one...</li>
+		<li class="fragment">and pairs of shoes, say you pick your cool boots. With the boots...</li>
+	      </ol>
+	    </li>
+	    <li class="fragment">With the bonnet, you can wear any of the shirts, pants and pairs of shoes</li>
+	  </ol>
+	  <br>
+	  <p class="fragment">You get the gist.</p>
+	  </section>
+	  <section>
+	    <b>Multiplication Rule</b>
+	    <br>
+	    If an operation can be performed in <span class="fragment highlight-red">$n_1$ ways</span>, and if for each of these a second operation can be performed in <span class="fragment highlight-red">$n_2$ ways</span>,
+	    and for each of the first two a third operation can be performed in <span class="fragment highlight-red">$n_3$ ways</span>, and so forth, then the sequence of $k$
+	    operations can be performed in <span class="fragment highlight-red">$n_1n_2 \dots n_k$ ways</span>.
+	  </section>
+	</section>
+	<section>
+	  <section data-background-image="img/quantum.gif" data-background-opacity=".5">
+	    <h4>Permutations</h4>
+	    <p>We care about permutations when we are concerned about the order of our sample or subsample.</p>
+	    <p class="fragment">For example, that T/F quantum physics quiz I gave you yesterday in which you completely guessed the answers to four distinct questions.</p>
+	    <p class="fragment">We figured out via the multiplication rule that there were 16 different ways to guess...that is</p>
+	    <p class="fragment"> 16 different permutations of 4 T's and F's.</p>
+	  </section>
+	  <section>
+	    <h4>Permutations</h4>
+	    <p>Picture yourself holding an urn containing two marbles: a <span class="fragment highlight-green">green</span> and a <span class="fragment highlight-red">red</span>.</p>
+	    <ul>
+	    <li class="fragment">It is random-guesses quiz time. Instructions: for each question draw a marble from your bag.</li>
+	    <li class="fragment">If it is <span class="fragment highlight-green">green</span>, answer <span class="fragment highlight-green">T</span> for that question. If it is <span class="fragment highlight-red">red</span>, answer <span class="fragment highlight-red">F</span> for that question.</li>
+	    <li class="fragment">Put the marble back in the bag, move on to the next question.</li>
+	    <li class="fragment">Since you always replace the marble, each question can have one of two answers!</li>
+	    </ul>
+	  </section>
+	  <section data-background-image="img/marbles.jpg" data-background-opacity=".1">
+	    <h4>Permutations</h4>
+	    <p>As a teacher though I had a different problem when I was making your quiz..."do I pick the entanglement question to be the first or the last? what about the particle spin question?!"</p>
+	     <ol>
+	    <li class="fragment">It is random-making quiz time. Instructions: Place 4 labeled marbles $\{a, b, c, d\}$ in a bag.</li>
+	    <li class="fragment">Draw one out - say it is $c$, this will be the first question. Don't replace it, a quiz with repeat questions is boring!</li>
+	    <li class="fragment">Now there are 3 marbles in the bag, draw one - say it is $a$, this will be the second question. Don't replace it!</li>
+	    </ol>
+	  </section>
+	  <section data-background-image="img/moremarbles.jpg" data-background-opacity=".2">
+	    <ol start="4">
+	    <li class="fragment">Now there are 2 marbles in the bag, draw one...</li>
+	    <li class="fragment">Now there is 1 marble in the bag, draw it. Done, we have a quiz ordering, say - $cadb$.</li>
+	    <li class="fragment">That is, I had 4 choices for the first questions, 3 for the second, 2 for the third and 1 for the fourth by sampling distinct objects without replacement.</li>
+	    <li class="fragment">Factorial definition: $n! = n(n-1)(n-2)...(2)(1)$ with $0! = 1$</li>
+	    </ol>
+	    <p class="fragment">How many passwords of length 5 can you make using the letters of the alphabet, if:</p>
+	    <ul>
+	      <li class="fragment">each letter must be unique?</li>
+	      <li class="fragment">each letter can be repeated?</li>
+	      </ul>
+	    </section>
+	  <section>
+	    <h4>Permutations</h4>
+	    <p>Another idea we should be aware of when dealing with permutations is non uniqueness, such as permuting the letters of the word "statistics".</p>
+	    <p class="fragment">This is a different case then the previous ones, since if we were to put labeled marbles in a bag, there would be one for $s_1$, one for $s_2$, one for $s_3$, ... that is, the bag would have all the repeats as if they were distinct.</p>
+	    <p class="fragment">However, when we draw a marble labeled $s_2$, we smudge out the subscript and treat it like an indistinguishable $s$.</p>
+	    
+	  </section>
+	  <section>
+	    <p>That is, the anagram $s_1s_3s_2t_3a_1c_1i_2t_1i_1t_2$ is indistinguishable from the anagram $s_3s_1s_2t_2a_1c_1i_1t_1i_2t_3$.</p>
+	    <p class="fragment">Both spell out "ssstacitit".</p>
+	    <p class="fragment">Any ideas how we would count all the permutations for anagrams of the word "statistics"?</p>
+	    <img class="fragment" src="img/anagram.jpg" width="200px">
+	  </section>
+	  <section>
+	    <h4>Idea:</h4>
+	    <ol>
+	      <li class="fragment">Treat all letters as unique: $s_1 \neq s_2 \neq s_3$ and so on for the others. That is, think of statistics having 10 unique letters and solve the old problem of counting all the permutations: 10!</li>
+	      <li class="fragment">Counted by those 10! permutations are the permutations of the $s$ letters amongst each other, 3! of them. However we don't care about the order of the $s$'s in the anagram. So we undo the counting of permuted $s$'s by dividing: 10!/3!</li>
+	      <li class="fragment">Do this for all repeated letters and get the following count: $$\frac{10!}{3!3!2!}$$</li>
+	    </ol>
+	  </section>
+	  <section>
+	    <p>In general:</p>
+	     <img src="img/permute.png" width="1400px">
+	  </section>
+	  <section>
+	    <h4>Circles</h4>
+	    Circular arragements are special:
+	    <img src="img/circles.png" width="1400px">
+	  </section>
+	</section>
+	<section>
+	  <section>
+	    <h4>Combinations</h4>
+	    <p>Combinations are like permutations when order does not matter. The question it answers is: "In how many ways can I make a subset of the elements of a given set?"</p>
+	    <p class="fragment">It is like you have a bag with $n$ marbles and you want to draw $r$ of them to put in another bag.</p>
+	    <p class="fragment">$${n \choose r} = \frac{n!}{r!(n-r)!}$$
+	  </section>
+	  <section data-background-image="img/homework.jpg" data-background-opacity=".05">
+	   More Homework 1 problems: 2.38, 2.45
+	  </section>
+	</section>
+
+	<section>
+	  <section>
+	    <h4>Probability of an Event</h4>
+	    <p>Informally, the probability of an event is a number between 0 and 1 such that:</p>
+	    <ul>
+	      <li>If the number is close to 0, then the event is not likely;</li>
+	      <li>If the number is close to 1, then the event is very likely;</li>
+	    </ul>
+	    <p class="fragment"> Question: Discuss examples of events that have $P=0$ (practically impossible) and events that have $P=1$ (definitely will happen as far as we can understand reality).</p>
+	  </section>
+	  <section  data-background-image="img/facecards.jpg" data-background-opacity=".1">
+	    <h4>Relative Frequencies</h4>
+	    <p>We assign the probability number via the ratio between the number of ways the event can happen and the total size of the sample space.</p>
+	    <p class="fragment">That is, let $A$ be the event we are instested in (say drawing a Jack, a Queen and a King from a deck of 52 shuffled cards) and let $S$ denote the sample space (all possible shufflings of 52 cards), then:</p>
+	  </section>
+	  <section data-background-image="img/facecards.jpg" data-background-opacity=".1">
+	    <p>$$P(A) = \frac{n(A)}{n(S)}$$  - where $P(.)$ denotes "the probability of" and $n(.)$ denotes "number of points in the set."</p>
+	    <p class="fragment">Question: What is the probability of drawing a Jack, a Queen and a King from any suit (order does not matter) from a shuffled deck of 52 cards?</p>
+	  </section>
+	  <section>
+	    <h4>Formally we have:</h4>
+	    <img src="img/probability.png" width="1400px">
+	  </section>
+	</section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+      autoPlayMedia: true,
+      math: {
+      mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+      config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+      },
+      dependencies: [
+      { src: 'plugin/markdown/marked.js' },
+      { src: 'plugin/markdown/markdown.js' },
+      { src: 'plugin/notes/notes.js', async: true },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/math/math.js', async: true }
+      ]
+      });
+    </script>
+  </body>
+</html>
