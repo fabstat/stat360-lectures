@@ -92,15 +92,19 @@
 	     <ol>
 	    <li class="fragment">It is random-making quiz time. Instructions: Place 4 labeled marbles $\{a, b, c, d\}$ in a bag.</li>
 	    <li class="fragment">Draw one out - say it is $c$, this will be the first question. Don't replace it, a quiz with repeat questions is boring!</li>
-	    <li class="fragment">Now there are 3 marbles in the bag, draw one - say it is $a$, this will be the second question. Don't replace it!</li>
 	    </ol>
 	  </section>
 	  <section data-background-image="img/moremarbles.jpg" data-background-opacity=".2">
-	    <ol start="4">
-	    <li class="fragment">Now there are 2 marbles in the bag, draw one...</li>
-	    <li class="fragment">Now there is 1 marble in the bag, draw it. Done, we have a quiz ordering, say - $cadb$.</li>
-	    <li class="fragment">That is, I had 4 choices for the first questions, 3 for the second, 2 for the third and 1 for the fourth by sampling distinct objects without replacement.</li>
-	    <li class="fragment">Factorial definition: $n! = n(n-1)(n-2)...(2)(1)$ with $0! = 1$</li>
+	    <ol start="3">
+	      <li class="fragment">Now there are 3 marbles in the bag, draw one - say it is $a$, this will be the second question. Don't replace it!</li>
+	      <li class="fragment">Now there are 2 marbles in the bag, draw one...</li>
+	      <li class="fragment">Now there is 1 marble in the bag, draw it. Done, we have a quiz ordering, say - $cadb$.</li>
+	    </ol>
+	  </section>
+	  <section>
+	    <ol start="6">
+	     <li class="fragment">That is, I had 4 choices for the first questions, 3 for the second, 2 for the third and 1 for the fourth by sampling distinct objects without replacement.</li>
+	     <li class="fragment">Factorial definition: $n! = n(n-1)(n-2)...(2)(1)$ with $0! = 1$</li>
 	    </ol>
 	    <p class="fragment">How many passwords of length 5 can you make using the letters of the alphabet, if:</p>
 	    <ul>
@@ -126,17 +130,22 @@
 	    <ol>
 	      <li class="fragment">Treat all letters as unique: $s_1 \neq s_2 \neq s_3$ and so on for the others. That is, think of statistics having 10 unique letters and solve the old problem of counting all the permutations: 10!</li>
 	      <li class="fragment">Counted by those 10! permutations are the permutations of the $s$ letters amongst each other, 3! of them. However we don't care about the order of the $s$'s in the anagram. So we undo the counting of permuted $s$'s by dividing: 10!/3!</li>
-	      <li class="fragment">Do this for all repeated letters and get the following count: $$\frac{10!}{3!3!2!}$$</li>
 	    </ol>
 	  </section>
 	  <section>
-	    <p>In general:</p>
-	     <img src="img/permute.png" width="1400px">
+	    <ol start="3">
+	      <li>Do this for all repeated letters and get the following count: $$\frac{10!}{3!3!2!}$$</li>
+	    </ol>
+	    <div class="fragment">
+	      <p>In general:</p>
+	      <img src="img/permute.png" width="1400px">
+	    </div>
 	  </section>
 	  <section>
 	    <h4>Circles</h4>
 	    Circular arragements are special:
 	    <img src="img/circles.png" width="1400px">
+	    <p class="fragment">If you want to arrange $n$ objects in a circle, then there are $(n-1)!$ ways to do it. This is because you can rotate the circle $n$ times and it is still the same circle.</p>
 	  </section>
 	</section>
 	<section>
@@ -164,7 +173,7 @@
 	  <section  data-background-image="img/facecards.jpg" data-background-opacity=".1">
 	    <h4>Relative Frequencies</h4>
 	    <p>We assign the probability number via the ratio between the number of ways the event can happen and the total size of the sample space.</p>
-	    <p class="fragment">That is, let $A$ be the event we are instested in (say drawing a Jack, a Queen and a King from a deck of 52 shuffled cards) and let $S$ denote the sample space (all possible shufflings of 52 cards), then:</p>
+	    <p class="fragment">That is, let $A$ be the event we are interested in (say drawing a Jack, a Queen and a King from a deck of 52 shuffled cards) and let $S$ denote the sample space (all possible shufflings of 52 cards), then:</p>
 	  </section>
 	  <section data-background-image="img/facecards.jpg" data-background-opacity=".1">
 	    <p>$$P(A) = \frac{n(A)}{n(S)}$$  - where $P(.)$ denotes "the probability of" and $n(.)$ denotes "number of points in the set."</p>
