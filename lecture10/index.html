@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>STAT 360 Lecture 10</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/league.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+	<section>
+	  Binomial and Multinomial Distributions
+	  <br><img src="img/bin.svg" width="500px"><br>
+	  STAT 360 - Lecture 10
+	</section>
+	<section>
+	  <section data-background-image="img/twoface.gif" data-background-opacity=".1">
+	    <h3>The Bernoulli Process:</h3>
+	    <ol>
+	      <li class="fragment">The experiment consists of a sequence of repeated trials.</li>
+	      <li class="fragment">Each trial results in one outcome from two possible outcomes: success versus failure. </li>
+	      <li class="fragment">The trials are independent, so the outcome on one trial does not affect another.</li>
+	      <li class="fragment">The probability of success, $p$, remains constant from trial to trial.</li>
+	    </ol>
+	  </section>
+	  <section data-background-image="img/assembly.jpg" data-background-opacity=".1">
+	    <h3>Example 1</h3>
+	    <p>Consider the set of Bernoulli trials where 3 items are selected at random from a manufacturing process, inspected, and classified as defective or nondefective. A defective item is designated a success. </p>
+	    <p class="fragment">The number of successes is a random variable $X$ assuming integral values from 0 through 3. The eight possible outcomes and the corresponding values of $X$ are:</p>
+	    <small><table class="fragment">
+	      <tbody>
+		<tr>
+		  <td>Outcome</td>
+		  <td>$NNN$</td>
+		  <td>$NDN$</td>
+		  <td>$NND$</td>
+		  <td>$DNN$</td>
+		  <td>$NDD$</td>
+		  <td>$DND$</td>
+		  <td>$DDN$</td>
+		  <td>$DDD$</td>
+		</tr>
+		<tr>
+		  <td>$x$</td>
+		  <td>0</td>
+		  <td>1</td>
+		  <td>1</td>
+		  <td>1</td>
+		  <td>2</td>
+		  <td>2</td>
+		  <td>2</td>
+		  <td>3</td>
+		</tr>
+	      </tbody>
+	    </table></small>
+	  </section>
+	  <section>
+	    <p>Does example 1 describe a Bernoulli process? Why or why not?</p>
+	  </section>
+	  <section  data-background-image="img/jury.jpg" data-background-opacity=".1">
+	    <h3>Example 2</h3>
+	    <p>The pool of prospective jurors for a certain case consists of 50 individuals, of whom 35 are employed. Suppose that 6 of these individuals are randomly selected one by one to sit in the jury box for initial questioning by lawyers for the defense and the prosecution. Label the $ith$ person selected (the $ith$ trial) as a success $S$ if he or she is employed and a failure $F$ otherwise.</p>
+	  </section>
+	  <section>
+	    <p>Does example 2 describe a Bernoulli process? Why or why not?</p>
+	    <p class="fragment">What if we had access to 500,000 individuals, of whom 400,000 are employed, and had to sample only 10 of them?</p>
+	  </section>
+	  <section>
+	    <p>So the Bernoulli process can be seen as either sampling with replacement from a small dichotomous population (e.g. head vs. tails from coin tosses),</p>
+	    <p class="fragment">Or as sampling without replacement from a dichotomous population of size $N$, such that the number of trials $n$ is at most 5% of the population size (e.g. picking 3 items from a large manufacturing assembly line in order to test for defective parts).</p>
+	  </section>
+	</section>
+	<section>
+	  <section>
+	    <h3>The Binomial Random Variable</h3>
+	    The binomial random variable $X$ associated with a Bernoulli process (also known as binomial experiment) consisting of $n$ trials is defined as: $X \approx$ the number of $S$'s (successes) among the $n$ trials. 
+	  </section>
+	  <section>
+	    <h3>The Binomial Distribution</h3>
+	  <p>If $X$ is a binomial random variable, it will depend on two important parameters: $n$ the number of trials and $p$ the probability of success.</p>
+	  <p class="fragment">We denote the p.m.f of a binomial r.v. by $b(x; n, p)$.</p>
+	  </section>
+	  <section>
+	    <p>For example, consider tossing a biased coin with probability $p$ of showing $H$ead $= S$ four times:</p>
+	    <img src="img/binex.png" width="1400px">
+	    <p class="fragment"><small>Question: How many outcomes have 3 successes?</small></p>
+	  </section>
+	  <section>
+	    <h3>The Binomial p.m.f.</h3>
+	    $$b(x; n, p) = {n \choose x}p^x(1-p)^{n-x},$$
+	    where: $x = 0,1,2,...,n$,<br> $n$ is the number of trials and <br> $p$ is the probability of success.
+	  </section>
+	  <section data-background-image="img/cokevspepsi.jpg" data-background-opacity=".1">
+	    <h4>Example</h4>
+	    <p>Each of six randomly selected cola drinkers is given a glass containing cola S and one containing cola F. The glasses are identical in appearance except for a code on the bottom to identify the cola. </p>
+	    <p class="fragment">Suppose there is actually no tendency among cola drinkers to prefer one cola to the other, so that $p = P$(a selected individual prefers S) = 0.5. Let $X$ be the number among the six who prefer S, that is $X \sim Bin(6,0.5)$.</p>
+	  </section>
+	  <section>
+	    <p class="fragment">Compute $P(X = 3)$.</p>
+	    <p class="fragment">Compute $P(X \leq 5)$.</p>
+	  </section>
+	  <section>
+	    <h3>The Binomial C.D.F.</h3>
+	    $$B(x; n, p) = P(X \leq x) = \sum_x b(i; n, p),$$
+	    where: $x = 0,1,2,...,n$,<br> $n$ is the number of trials and <br> $p$ is the probability of success.
+	  </section>
+	  <section>
+	    <h3>Also good to know about...</h3>
+	    <img src="img/multinomial.png" width="1400px">
+	    <p class="fragment">However, we will spend more time with the binomial today!</p>
+	    <p class="fragment">You can read more about the multinomial distribution <a href="https://en.wikipedia.org/wiki/Multinomial_distribution" target="_blank">here.</a></p>
+	    </section>
+	</section>
+	<section>
+	  <section>
+	    <h3>Mean and Variance of a Binomial R.V.</h3> <h4>(then we will do some examples!)</h4>
+	    <p>Let $X \sim Bin(n,p)$, then $E(X) = np$, $Var(X) = np(1-p)$</p>
+	    <p class="fragment">Homework problem: using the binomial p.m.f. and the definition of expectation, prove the statement above.</p>
+	    <p class="fragment"><small>This <a href="https://newonlinecourses.science.psu.edu/stat414/node/71/" target="_blank">link</a> can help, if you are stuck.</small></p>
+	  </section>
+	 <section data-background-iframe="https://shiny.rit.albany.edu/stat/binomial/" data-background-interactive>
+	   <div style="position: absolute; width: 40%; bottom: 0; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+	     <h2>Shape and Position</h2>
+	     <p>How do the parameters $n$ and $p$ affect the shape of the binomial distribution?</p>
+	   </div>
+	 </section>
+	 <section data-background-iframe="https://shiny.rit.albany.edu/stat/binomial/" data-background-interactive>
+	 </section>
+	</section>
+	<section>
+	  <h3>Computing Probabilities of Binomial R.V.'s</h3>
+	  <p>We have several ways!</p>
+	  <ul>
+	    <li class="fragment">By hand</li>
+	    <li class="fragment">With a calculator</li>
+	    <li class="fragment">Using R, or other software</li>
+	    <li class="fragment">Using a table (like $A.1$ on $pp. \ 727-727$)</li>
+	    </ul>
+	  </section>
+	<section>
+	  <h3>Example and Homework</h3>
+	  <p>We will do these exercises in class: 5.11, 5.22</p>
+	  <p>You will do these for homework: 5.9, 5.12, 5.18, 5.20</p>
+	</section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+      autoPlayMedia: true,
+      math: {
+      mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+      config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+      },
+      dependencies: [
+      { src: 'plugin/markdown/marked.js' },
+      { src: 'plugin/markdown/markdown.js' },
+      { src: 'plugin/notes/notes.js', async: true },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/math/math.js', async: true }
+      ]
+      });
+    </script>
+  </body>
+</html>
