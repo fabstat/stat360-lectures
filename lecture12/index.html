@@ -26,7 +26,7 @@
       <div class="slides">
 	<section>
 	  The Poisson and Other Fish!
-	  <br><img src="img/Poisson.jpg" width="500px"><br>
+	  <br><img src="img/Poisson.jpg" width="300px"><br>
 	  STAT 360 - Lecture 12
 	</section>
 	<section>
@@ -72,13 +72,13 @@
 	    <p class="fragment">The variance of a negative binomial r.v. is: $\sigma^2 = \frac{k(1-p)}{p^2}$.</p>
 	    <p class="fragment">The expectation and variance of a geometric r.v. can be obtain from the above by letting $k=1$.</p>
 	  </section>
-	  <section>
+	  <section data-background-image="img/baseball.jpg" data-background-opacity=".1">
 	    <h4>Example</h4>
 	    <p>Team $A$ plays team $B$ in a seven-game world series, so the series is over when either team wins four games.</p>
 	    <p>For each game, $P(A$ wins$) = 0.6$, and the games are assumed independent.</p>
 	    <p>What is the probability that the series will end in exactly six games?</p>
 	  </section>
-	  <section>
+	  <section  data-background-image="img/dory.jpg" data-background-opacity=".1">
 	    <h4>No Memory Property</h4>
 	    <p>A special property of the geometric distribution is the no-memory property: If $X \sim Geo(p)$, then $P(X > j + k | X > j) = P(X > k)$.</p>
 	    <p class="fragment">Given the CDF of the geometric distribution $G(x;p) = \sum_{i=1}^x p(1-p)^{i-1} = 1 - (1- p)^x$, for $x = 1,2,3,\dots$ (derived in a previous lecture), prove the no-memory property of the geometric distribution.</p>
@@ -88,12 +88,21 @@
 	  <section>
 	    <h3>The Poisson Distribution</h3>
 	    <p>There are two main characteristics of a Poisson experiment:</p>
+	    <div class="fragment">
+	      <img src="img/FindingDory.jpg" width="300px">
+	      <p>Wait a minute! Experiments with fish?!?</p>
+	    </div>
+	    <p class="fragment">No Dory...Poisson refers to the distribution...remember...ah...no, ok.</p>
+	  </section>
+	  <section  data-background-image="img/poispmf.png" data-background-opacity=".1">
+	    <h3>The Poisson Distribution</h3>
+	    <p>There are two main characteristics of a Poisson experiment:</p>
 	    <ol>
 	      <li class="fragment">We want to count the number of events occurring in a fixed interval of time or space if these events happen with a known average rate and independently of the time since the last event.</li>
 	      <li class="fragment">We want to approximate a binomial experiment if the probability of success is "small" (such as 0.01) and the number of trials is "large" (such as 1,000).</li>
 	      </ol>
 	  </section>
-	  <section>
+	  <section data-background-image="img/mailboxes.jpg" data-background-opacity=".1">
 	    <h4>For example:</h4>
 	    <p>Suppose you typically get 4 pieces of mail per day. That becomes your expectation, but there will be a certain spread: sometimes a little more, sometimes a little less, once in a while nothing at all.</p>
 	    <p class="fragment">Given only the average rate, for a certain period of observation (e.g. pieces of mail per day), and assuming that the process that produce the event flow is essentially random, the Poisson Distribution will tell you how likely it is that you will get 3, or 5, or 11, or any other number, during one period of observation.</p>
@@ -107,13 +116,13 @@
 	    <p class="fragment">$$P(X=x) = \frac{\lambda^xe^{-\lambda}}{x!}$$</p>
 	    <p class="fragment">where $x=0,1,2,\dots$</p>
 	  </section>
-	  <section>
+	  <section data-background-image="img/horsekick.jpg" data-background-opacity=".2">
 	    <h4>A Classic Example</h4>
 	    <p>The classic Poisson example is the data set of von Bortkiewicz (1898), for the chance of a Prussian cavalryman being killed by the kick of a horse.</p>
 	    <p class="fragment">Ten army corps were observed over 20 years, giving a total of 200 observations of one corps for a one year period. The total deaths from horse kicks were 122, and the average number of deaths per year per corps was thus 122/200 = 0.61.</p>
 	  </section>
-	  <section>
-	    <p class="fragment">In any given year, we wouldn't expect to observe exactly 0.61 deaths in one corps (that is not possible; deaths occur in modules of 1), but sometimes none, sometimes one, occasionally two, perhaps once in a while three, and (we might intuitively expect) very rarely any more. </p>
+	  <section data-background-image="img/corphorse.jpg" data-background-opacity=".2">
+	    <p>In any given year, we wouldn't expect to observe exactly 0.61 deaths in one corps (that is not possible; deaths occur in modules of 1), but sometimes none, sometimes one, occasionally two, perhaps once in a while three, and (we might intuitively expect) very rarely any more. </p>
 	  </section>
 	  <section>
 	    <h4>A Classic Poisson Situation</h4>
@@ -174,14 +183,15 @@
 	       </tr>
 	     </tbody>
 	   </table>
-
-	  </section>
-	  <section data-background-image="img/cokevspepsi.jpg" data-background-opacity=".1">
+	    </section>
+	</section>
+	<section>
+	  <section data-background-image="img/uber.jpg" data-background-opacity=".1">
 	    <h4>Binomial in the Limit</h4>
-	    <p>Uber is are interested in solving the following problem: what is the probability of getting one ride request, two ride requests, etc from a particular location?</p>
+	    <p>Uber is interested in solving the following problem: what is the probability of getting one ride request, two ride requests, etc from a particular location?</p>
 	    <p class="fragment">After analyzing historical records, they conclude that the average request per minute is 5. Can they figure out their probability question just from this information?</p>
 	  </section>
-	 <section data-background-image="img/cokevspepsi.jpg" data-background-opacity=".1">
+	 <section data-background-image="img/uber.jpg" data-background-opacity=".1">
 	    <h4>Binomial in the Limit</h4>
 	    <p>Let $X$ be the number of ride requests in the next minute. Let's find $P(X=k)$ using the binomial distribution!</p>
 	    <p class="fragment">Split the minute into 60 seconds and count "success" for a request coming in a second and "failure" for no request coming in that second. If requests are equally likely, the the probability of success is 5/60.</p>
@@ -197,6 +207,14 @@
 	    <p class="fragment">Maybe Uber hires a mathematician to help:</p></small>
 	    <img class="fragment" src="img/inthelimit.png" width="1400px">
 	    </section>
+	  <section>
+	    <h4>Expectation of a Poisson R.V.</h4>
+	    <img src="img/poissonex.png" width="700px">
+	  </section>
+	  <section>
+	    <h4>Variance of a Poisson R.V.</h4>
+	    <img src="img/poisvar.png" width="1400px">
+	  </section>
 	</section>
       </div>
     </div>
