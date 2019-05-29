@@ -63,8 +63,11 @@
 	    <p>$Var(X) = \frac{(b-a)^2}{12}$</p>
 	    <p>HW 4 Problem 1: Prove the above expectation and variance for $X \sim$ UNIF$(a,b)$.</p>
 	  </section>
-	  <section>
-	    <h4>Example</h4>
+	  <section data-background-image="img/bus.jpg" data-background-opacity=".1">
+	    <h4>Example (exercise 6.4)</h4>
+	    <p>A bus arrives every 10 minutes at a bus stop. It is assumed that the waiting time for a particular individual is a random variable with a continuous uniform distribution.</p>
+	    <p class="fragment">What is the probability that the individual waits more than 7 minutes?</p>
+	    <p class="fragment">What is the probability that the individual waits between 2 and 7 minutes?</p>
 	  </section>
 	</section>
 	<section>
@@ -94,16 +97,22 @@
 	  <section data-background-image="img/normal.svg" data-background-opacity=".2">
 	    <p>Note that by construction $E(X) = \mu$ and $Var(X) = \sigma^2$.</p>
 	  </section>
-	  <section>
+	  <section data-background-image="img/emprule.png" data-background-opacity=".9"></section>
+	  <section data-background-image="img/emprule.png" data-background-opacity=".1">
 	    <p>The Normal distribution is the most important distribution when it comes to practical applications.</p>
 	    <p class="fragment">Various physical phenomena express exact normality; the Normal distribution can approximate probabilities for Binomial and Poisson r.v.'s; the errors in regression analysis follow a Normal distribution.</p>
 	  </section>
-	  <section data-background-image="img/stdnormal.jpg" data-background-opacity=".2">
+	  <section>
+	    <img src="img/xkcdnorm.png" width="1400px">
+	  </section>
+	  <section data-background-image="img/stdnormal.jpg" data-background-opacity=".9"></section>
+	  <section data-background-image="img/stdnormal.jpg" data-background-opacity=".1">
 	    <h4>Standardizing</h4>
 	    <p> Since it is so useful in practice, we better also make it efficient!</p>
 	    <p class="fragment">If $X \sim N(\mu, \sigma^2)$, then $Z = \frac{X - \mu}{\sigma} \sim N(0,1)$.</p>
 	    <img class="fragment" src="img/standard.jpg" width="500px">
 	  </section>
+	  
 	  <section data-background-image="img/stdnormal.jpg" data-background-opacity=".2">
 	    <p>This gives us the standard normal curve:</p>
 	    <p class="fragment">$$Z \sim \phi(z) = \frac{1}{\sqrt{2\pi}}e^{-z^2/2}$$</p>
@@ -124,17 +133,37 @@
 	    <p class="fragment">Simply by finding $\Phi(z) = P(Z \leq z)$.</p>
 	  </section>
 	  <section>
-	    <h4>Example 1</h4>
+	    <h4>Example 1 (exercise 6.6)</h4>
+	    <p>Find the value of $z$ if the area under a standard normal curve:</p>
+	    <ol>
+	      <li class="fragment"> to the right of $z$ is 0.3622;</li>
+	      <li class="fragment"> to the left of $z$ is 0.1131;</li>
+	      <li class="fragment"> between 0 and $z$, with $z > 0$, is 0.4838;</li>
+						 <li class="fragment"> between $-z$ and $z$, with $z > 0$, is 0.9500.</li>
+</ol>
+	    
 	  </section>
-	  <section>
-	    <h4>Example 2</h4>
+	  <section data-background-image="img/rye.jpg" data-background-opacity=".2">
+	    <h4>Example 2 (exercise 6.12)</h4>
+	    <p>The loaves of rye bread distributed to local stores by a certain bakery have an average length of 30 centimeters and a standard deviation of 2 centimeters. Assuming that the lengths are normally distributed, what percentage of the loaves are:</p>
+	    <ol>
+	      <li class="fragment"> longer than 31.7 centimeters?</li>
+	      <li class="fragment"> between 29.3 and 33.5 centimeters in length?</li>
+	      <li class="fragment"> shorter than 25.5 centimeters?</li>
+	    </ol>
 	  </section>
-	</section>
-	<section>
-	 
+	  <section data-background-image="img/oxygen.jpeg" data-background-opacity=".2">
+	    <h4>Example 3 (exercise 6.16)</h4>
+	    <p>In the November 1990 issue of Chemical Engineering Progress, a study discussed the percent purity of oxygen from a certain supplier. Assume that the mean was 99.61 with a standard deviation of 0.08. Assume that the distribution of percent purity was approximately normal.</p>
+	    <ol>
+	    <li class="fragment"> What percentage of the purity values would you expect to be between 99.5 and 99.7?</li>
+	    <li class="fragment"> What purity value would you expect to exceed exactly 5% of the population?</li>
+	    </ol>
 	  </section>
-	<section>
-	 
+	   <section data-background-image="img/hw.jpg" data-background-opacity=".2">
+	     <h4>Homework 4</h4>
+	     Exercises: 6.3, 6.5, 6.11, 6.19, 6.22
+	  </section>
 	</section>
       </div>
     </div>
