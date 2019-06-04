@@ -6,3 +6,4 @@
 - [Lecture 10](lecture10/)
 - [Lecture 12](lecture12/)
 - [Lecture 13](lecture13/)
+- [Lecture 16](lecture16/)

@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>STAT 360 Lecture 16</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+	<section>
+	  Fundamental Sampling Distributions (Ch. 8) 
+	  <br><img src="img/sampling.png" width="500px"><br>
+	  STAT 360 - Lecture 16
+	</section>
+	<section data-background-image="img/statistics.jpg" data-background-opacity=".1">
+	  <h4>What we will cover today:</h4>
+	  <ul>
+	    <li class="fragment">Random Sampling</li>
+	    <li class="fragment">Some Important Statistics</li>
+	    <li class="fragment">Sampling Distributions</li>
+	    <li class="fragment">Sampling Distribution of Means</li>
+	    <li class="fragment">The Central Limit Theorem (CLT)</li>
+	    <li class="fragment">Sampling Distribution of $S^2$</li>
+	    <li class="fragment">Student's t-distribution</li>
+	  </ul>
+	</section>
+	<section>
+	  <section data-background-image="img/crowd.jpg" data-background-opacity=".3">
+	    <h4>Populations and Samples</h4>
+	    <p>Now from the perspective of Ramdom Variables.</p>
+	    <ul>
+	      <li class="fragment">Population $\Leftrightarrow$ Random Variable. For instance, if $X\sim N(65,5)$ represents the heights of 200 people we are studying, then we have a normal population.</li> <br>
+	      <li class="fragment">Sample: a labeled subset of the population, ideally random, usually labeled and unordered.</li>  	
+	    </ul>
+	  </section>
+	  <section>
+	    <h4>Random Samples and Statistics</h4>
+	    <ul>
+	    <li>Random Samples from a distribution $f(x)$ have the <i>i.i.d. property</i> - independent and identically distributed. This means that for a random sample of size $n$ from a population $X\sim f(x; \hat{\theta})$, we have that $X_1 \sim f(x; \hat{\theta}), \dots, X_n \sim f(x; \hat{\theta})$.</li> <br>
+	    <li class="fragment">Statistics: a real valued function of the sample $t(x_1, \dots, x_n)$, which does not depend on any unknown parameters.</li>
+	    </ul>
+	  </section>
+	</section>
+	<section>
+	  <section data-background-image="img/com.jpg" data-background-opacity=".2">
+	    <h4>Example of Statistics: The Sample Mean</h4>
+	    Let $X_1, \dots, X_n$ be a random sample,
+	   $$\bar{X} = \frac{1}{n}\sum_{i=1}^{n}X_i.$$
+	  </section>
+	  <section data-background-image="img/spin.gif" data-background-opacity=".3">
+	    <h4>Example of Statistics: The Sample Variance</h4>
+	    Let $X_1, \dots, X_n$ be a random sample,
+	   $$S^2 = \frac{1}{n-1}\sum_{i=1}^{n}(X_i - \bar{X})^2.$$
+	  </section>
+	  <section>
+	    <h4>Question</h4>
+	    <p>Let $X_1, \dots, X_n$ be a random sample from $X \sim f(x)$, then what is the joint pdf for $f(x_1,\dots , x_n)$?</p>
+	  </section>
+	  <section>
+	    <h4>Question</h4>
+	    <p>Let $X_1, \dots, X_n$ be a random sample from $X \sim f(x)$ and $E(X) = \mu$, then is</p>
+	    $$\frac{1}{n}\sum_{i=1}^{n}(x_i - \mu)$$
+	    <p>a statistics?</p>
+	  </section>
+	  <section>
+	    <p>With a little bit of algebra, the sample variance $S^2$ of a random sample of size $n$, can be written as:</p>
+	    $$S^2 = \frac{\sum_{i=1}^n X_i^2 - n\bar{X}^2}{n-1}.$$
+	  </section>
+	  <section data-background-image="img/hw.png" data-background-opacity=".2">
+	    Homework 5 additions: 8.2, 8.3, 8.9, 8.10
+	    </section>
+	</section>
+	<section>
+	  <section data-background-image="img/samples.png" data-background-opacity=".1">
+	    <h4>Sampling Distributions</h4>
+	      <p>Since a statistic is also a random variable, repeated sampling and observation of a statistic gives us a probability distribution for that statistic.</p>
+	  </section>
+	  <section data-background-image="img/hatchery.jpg" data-background-opacity=".3">
+	    <h4>For example</h4>
+	    <p> A large tank of fish from a hatchery is being delivered to the lake. We want to know the average length of the fish in the tank. Instead of measuring all of the fish, we randomly sample twenty fish and use the sample mean to estimate the population mean. </p>
+	    <p class="fragment">Denote the sample mean of the twenty fish as $\bar{x}_1$. Suppose we take a separate sample of size twenty from the same hatchery. Denote that sample mean as $\bar{x}_2$.</p>
+	    <p class="fragment">Would $\bar{x}_1$ and $\bar{x}_2$ be the same? <span class="fragment">Not necessarily.</span></p>
+	  </section>
+	  <section>
+	    We can continue taking random samples and computing the sample mean for each. Say we do this 1000 times, then plot all the recorded sample means in a histogram.
+	    <p class="fragment">This would give us the sampling distribution of the sample mean!</p>
+	    <p class="fragment">In fact we can do this with any statistics, but we will focus on the two most applicable to inference: the sample mean and the sample variance.</p> 
+	  </section>
+	   <section data-background-iframe="http://www.lock5stat.com/StatKey/" data-background-interactive>
+	   <div style="position: absolute; width: 40%; bottom: 0; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+	     <h2>Let's do some sampling!</h2>
+	     <p>We are going to take a sample, record and plot the mean.</p>
+	   </div>
+	   </section>
+	   <section data-background-image="img/elmo.jpg" data-background-opacity=".3">
+	  <p>Since this is a new probability distribution, then let's switch to the doc camera and see if we can figure out what its the mean and variance are!</p>
+	  </section>
+	</section>
+	<section>
+	  <section data-background-image="img/clt.png" data-background-opacity=".3">
+	    <h4>The Central Limit Theorem</h4>
+	    <img src="img/thclt.png" width="1400px">
+	    </section>
+	<section>
+	  <iframe src="https://player.vimeo.com/video/75089338" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<p><a href="https://vimeo.com/75089338">CreatureCast - Central Limit Theorem</a> from <a href="https://vimeo.com/user1747626">Casey Dunn</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+	</section>
+	</section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+      autoPlayMedia: true,
+      math: {
+      mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+      config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+      },
+      dependencies: [
+      { src: 'plugin/markdown/marked.js' },
+      { src: 'plugin/markdown/markdown.js' },
+      { src: 'plugin/notes/notes.js', async: true },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/math/math.js', async: true }
+      ]
+      });
+    </script>
+  </body>
+</html>
