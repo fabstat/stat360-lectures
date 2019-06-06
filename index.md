@@ -1,4 +1,4 @@
-# Lectures
+# STAT 360 Summer: Lecture Slides
 - [Lecture 1](lecture1/)
 - [Lecture 3](lecture3/)
 - [Lecture 8](lecture8/)
@@ -7,3 +7,4 @@
 - [Lecture 12](lecture12/)
 - [Lecture 13](lecture13/)
 - [Lecture 16](lecture16/)
+- [Lecture 18](lecture18/)
