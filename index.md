@@ -8,3 +8,4 @@
 - [Lecture 13](lecture13/)
 - [Lecture 16](lecture16/)
 - [Lecture 18](lecture18/)
+- [Lecture 19](lecture19/)
