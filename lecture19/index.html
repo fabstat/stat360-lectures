@@ -34,9 +34,8 @@
 	  <ul>
 	    <li class="fragment">Introduction to Statistical Inference</li>
 	    <li class="fragment">Classical Methods of Estimation</li>
-	    <li class="fragment">Single Sample: Estimating the Mean</li>
 	    <li class="fragment">Standard Error of a Point Estimate</li>
-	    <li class="fragment">Prediction Intervals</li>
+	    <li class="fragment">Single Sample: Estimating the Mean</li>
 	  </ul>
 	</section>
 	<section>	  
@@ -77,7 +76,10 @@
 	      <p>Otherwise, we call $T$ is a <b>biased estimator</b> of $\theta$.</p>
 	    <p class="fragment">As before, we can "create" populations, draw samples, and come up with a theory for what makes a good estimator, such as unbiasedness.</p>
 	  </section>
-	  <section><img src="img/bias.png" width="700px"></section>
+	  <section>
+	    <h4> Bias</h4>
+	    <img src="img/bias.png" width="700px">
+	  </section>
 	  <section>
 	    <h4>Example</h4>
 	    <p>Let's show that $S^2 = \frac{1}{n-1}\sum_{i=1}^{n}(X_i - \bar{X})^2$ is an unbiased estimator for the variance $\sigma^2$ of a distribution.</p>
@@ -87,9 +89,9 @@
 	  <section>
 	    $$E(S^2) = E\left(\frac{\sum_{i=1}^n X_i^2 - n\bar{X}^2}{n-1}\right)$$
 	    <br>
-	    <span class="fragment">$$\frac{1}{n-1}\left(E\left(\sum_{i=1}^n X_i^2\right) - E\left(n\bar{X}^2\right)\right)$$</span>
+	    <span class="fragment">$$=\frac{1}{n-1}\left(E\left(\sum_{i=1}^n X_i^2\right) - E\left(n\bar{X}^2\right)\right)$$</span>
 	    <br>
-	    <span class="fragment">$$\frac{1}{n-1}\left(\sum_{i=1}^n E(X_i^2) - nE(\bar{X}^2)\right).$$</span>
+	    <span class="fragment">$$=\frac{1}{n-1}\left(\sum_{i=1}^n E(X_i^2) - nE(\bar{X}^2)\right).$$</span>
 	    <p class="fragment">Also, recall that $Var(X) = E(X^2) - (E(X))^2$ $\Rightarrow E(X^2) = Var(X) + (E(X))^2$.</p> 
 	  </section>
 	  <section>
@@ -107,10 +109,13 @@
 	    <p class="fragment">Say that we have two different unbiased estimators $T_1$ and $T_2$ for the parameter $\theta$. Which one should we use?</p>
 	    <p class="fragment">Answer: choose the one with the minimum variance.</p>
 	  </section>
-	  <section><img src="img/variance.png" width="500px"></section>
+	  <section>
+	    <h4>Role of Variance</h4>
+	    <img src="img/variance.png" width="500px">
+	  </section>
 	  <section>
 	    <p>Definition: Let $X_1, \dots, X_n$ be a random sample of size $n$ from a distribution $f(x; \theta)$.
-	      An estimator $T^*$ of $\theta$ is called a <b>minimum variance unbiased estimator</b>(MVUE) of $\theta$ if:</p>
+	      An estimator $T^*$ of $\theta$ is called a <b>minimum variance unbiased estimator</b> (MVUE) of $\theta$ if:</p>
 	    <ol>
 	      <li class="fragment">$T^*$ is unbiased for $\theta$, and </li>
 	      <li class="fragment"> for any other unbiased estimator $T$ of $\theta$, $Var(T^*) \leq Var(T)$.</li>
@@ -118,7 +123,7 @@
 	  </section>
 	  <section>
 	    <h3>Questions</h3>
-	    Consider a random sample of size $n$ from $f(x; \theta)$, the sample mean $\bar{X}$ and the trimmed mean introduced in chapter 1 (that is the mean with outlies chopped off), denoted $\tilde{X}$:
+	    Consider a random sample of size $n$ from $f(x; \theta)$, the sample mean $\bar{X}$ and the trimmed mean introduced in chapter 1 (that is the mean with outliers chopped off), denoted $\tilde{X}$:
 	    <ol>
 	      <li class="fragment">Is the trimmed mean an unbiased estimation for any distribution? Justify your answer.</li>
 	      <li class="fragment">Considering a distribution for which both $\bar{X}$ and $\tilde{X}$ are unbiased estimators, which one is MVUE?</li>
@@ -159,7 +164,7 @@ $$P(\hat{\theta}_L \leq \theta \leq \hat{\theta}_U) = 1 - \alpha.$$
 	  <section>
 	    Typical confidence coefficients are 0.90, 0.95, and 0.99, with corresponding confidence levels 90%, 95%, and 99%. For example, upon calculating a confidence interval for a mean with a confidence level of, say 95%, we can say:
 
-<p class="fragment">"We can be 95% confident that the population mean falls between L and U."</p> 
+<p class="fragment">"We can be $95\%$ confident that the population mean falls between $L$ and $U$."</p> 
 
 <p class="fragment">As should agree with our intuition, the greater the confidence level, the more confident we can be that the confidence interval contains the actual population parameter.</p>
 	  </section>
@@ -179,6 +184,7 @@ $$P(\hat{\theta}_L \leq \theta \leq \hat{\theta}_U) = 1 - \alpha.$$
 	  <section>
 	    Is there convincing evidence that policemen exposed to constant auto exhaust have elevated blood lead level concentrations? <small><i>(Data source: Kamal, Eldamaty, and Faris, "Blood lead level of Cairo traffic policemen," Science of the Total Environment, 105(1991): 165-170.)</i></small>
 	    <p class="fragment">Let's use the document camera to solve this question.</p>
+	    <p class="fragment"><a href="lecture19_doc_camera.pdf" target="_blank"><i>solution</i></a></p>
 	  </section>
 	  <section>
 	    <h4>Interpretation of CI</h4>
@@ -188,7 +194,10 @@ $$P(\hat{\theta}_L \leq \theta \leq \hat{\theta}_U) = 1 - \alpha.$$
 	    <p class="fragment">Why?</p>
 	  </section>
 	  <section>
+	    <h4>Some Confidence Intervals</h4>
 	    <img src="img/ci.png" width="500px">
+	    <br>
+	    <a href="http://www.rossmanchance.com/applets/ConfSim.html" target="_blank">CI Applet</a>
 		</section>
 	</section>
 	<section>
@@ -197,18 +206,47 @@ $$P(\hat{\theta}_L \leq \theta \leq \hat{\theta}_U) = 1 - \alpha.$$
 	    If $\bar{x}$ is used to estimate $\mu$, then we can be $100(1-\alpha)\% $ confident that the error will not exceed $z_{\alpha/2}\frac{\sigma}{\sqrt{n}}$.
 	    <p class="fragment">Also, we can be $100(1-\alpha)\% $ confident that the error will not exceed $e$ when the sample size is $n = \left(\frac{z_{\alpha/2}\sigma}{e}\right)^2$.</p>
 	  </section>
-	  <section>
-	    <h3>One Sided CIs</h3>
-	  </section>
-	  <section>
+	  <section data-background-image="img/computers.jpg" data-background-opacity=".2">
 	    <h4>Example</h4>
+	    <p>Monitoring of a computer system has suggested that response time to a particular command is normally distributed with std. dev. 25 millisec.</p>
+	    <p class="fragment">A new operating system has been installed, and we wish to estimate the true average response time $\mu$ for the new OS.</p>
+	    <p class="fragment">Assuming that response times are still normally distributed with $\sigma = 25$, what sample size is necessary to ensure that the resulting $95\%$ C.I. has a width of (at most) 10?</p>
+	    </section>
+	  <section>
+	    <h3>One Sided Confidence Bounds on $\mu$, $\sigma^2$ Known</h3>
+	    <p> If $\bar{X}$ is the mean of a random sample of size $n$ from a population with variance $\sigma^2$, the one-sided $100(1-\alpha)\%$ confidence bounds for $\mu$ are given by:</p>
+	    <ul>
+	      <li class="fragment">upper one-sided bound: $\bar{x}+z_{\alpha}\sigma/\sqrt{n}$</li>
+	      <li class="fragment">lower one-sided bound: $\bar{x}-z_{\alpha}\sigma/\sqrt{n}$</li>
+	      </ul>
+	      
+	  </section>
+	  <section data-background-image="img/hospital.jpeg" data-background-opacity=".2">
+	    <h4>Example</h4>
+	    In a sample of 123 hip surgeries of a certain type, the average surgery time was 136.9 minutes with a standard deviation of 22.6 minutes. Find a 98% lower confidence bound for the mean time.
 	  </section>
 	  <section>
 	    <h3>Case of $\sigma$ unknown</h3>
+	    <img src="img/tdistro.png" width="500px">
+	  </section>
+	  <section data-background-image="img/honolulu.jpg" data-background-opacity=".2">
+	    <h4>Example</h4>
+	    It is assumed that the mean systolic blood pressure is $\mu = $120 mm Hg (from normal population). In the Honolulu Heart Study, a sample of $n = 100$ people had an average systolic blood pressure of 130.1 mm Hg with a standard deviation of 21.21 mm Hg. Is the group significantly different (with respect to systolic blood pressure!) from the regular population?
 	  </section>
 	  <section>
-	    <h4>Example</h4>
+	    <h3>Large Sample Confidence Interval</h3>
+	    <img src="img/large.png" width="500px">
 	  </section>
+	  <section data-background-image="img/cotton.jpg" data-background-opacity=".2">
+	    <h4>Example</h4>
+	    A sample of 56 research cotton samples resulted in a sample average percentage elongation of 8.17 and a sample standard deviation of 1.42 (“An Apparent Relation Between the Spiral Angle $\phi$, the Percent Elongation $E_1$, and the Dimensions of the Cotton Fiber,” Textile Research J., 1978: 407–410). Calculate a 96% large-sample C.I. for the true average percentage elongation $\mu$. What assumptions are you making about the distribution of percentage elongation?
+	  </section>
+
+	  <section>
+	    <p>Links:</p>
+	    <ul>
+	    <li><a href="http://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/BS704_Confidence_Intervals/BS704_Confidence_Intervals_print.html" target="_blank">Nice treatment of the topic from BU</a></li>
+	    </section>
 	  <section data-background-image="img/desk1.jpg" data-background-opacity=".1">
 	    <p>For our last lecture please read sections 9.4 and 9.5 carefully and write a through summary. Do not read section 9.6</p>
 	    <p>Homework 6 problems:</p>
