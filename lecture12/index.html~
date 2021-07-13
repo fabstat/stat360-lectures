@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>STAT 360 Lecture 10</title>
+    <title>STAT 360 Lecture 3</title>
 
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/league.css">
+    <link rel="stylesheet" href="css/theme/black.css">
 
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -25,138 +25,164 @@
     <div class="reveal">
       <div class="slides">
 	<section>
-	  Binomial and Multinomial Distributions
-	  <br><img src="img/bin.svg" width="500px"><br>
-	  STAT 360 - Lecture 10
+	  Counting and Probability of Events
+	  <br><img src="img/sheep.jpg" width="500px"><br>
+	  STAT 360 - Lecture 3
 	</section>
 	<section>
-	  <section data-background-image="img/twoface.gif" data-background-opacity=".1">
-	    <h3>The Bernoulli Process:</h3>
-	    <ol>
-	      <li class="fragment">The experiment consists of a sequence of repeated trials.</li>
-	      <li class="fragment">Each trial results in one outcome from two possible outcomes: success versus failure. </li>
-	      <li class="fragment">The trials are independent, so the outcome on one trial does not affect another.</li>
-	      <li class="fragment">The probability of success, $p$, remains constant from trial to trial.</li>
-	    </ol>
-	  </section>
-	  <section data-background-image="img/assembly.jpg" data-background-opacity=".1">
-	    <h3>Example 1</h3>
-	    <p>Consider the set of Bernoulli trials where 3 items are selected at random from a manufacturing process, inspected, and classified as defective or nondefective. A defective item is designated a success. </p>
-	    <p class="fragment">The number of successes is a random variable $X$ assuming integral values from 0 through 3. The eight possible outcomes and the corresponding values of $X$ are:</p>
-	    <small><table class="fragment">
-	      <tbody>
-		<tr>
-		  <td>Outcome</td>
-		  <td>$NNN$</td>
-		  <td>$NDN$</td>
-		  <td>$NND$</td>
-		  <td>$DNN$</td>
-		  <td>$NDD$</td>
-		  <td>$DND$</td>
-		  <td>$DDN$</td>
-		  <td>$DDD$</td>
-		</tr>
-		<tr>
-		  <td>$x$</td>
-		  <td>0</td>
-		  <td>1</td>
-		  <td>1</td>
-		  <td>1</td>
-		  <td>2</td>
-		  <td>2</td>
-		  <td>2</td>
-		  <td>3</td>
-		</tr>
-	      </tbody>
-	    </table></small>
-	  </section>
-	  <section>
-	    <p>Does example 1 describe a Bernoulli process? Why or why not?</p>
-	  </section>
-	  <section  data-background-image="img/jury.jpg" data-background-opacity=".1">
-	    <h3>Example 2</h3>
-	    <p>The pool of prospective jurors for a certain case consists of 50 individuals, of whom 35 are employed. Suppose that 6 of these individuals are randomly selected one by one to sit in the jury box for initial questioning by lawyers for the defense and the prosecution. Label the $ith$ person selected (the $ith$ trial) as a success $S$ if he or she is employed and a failure $F$ otherwise.</p>
-	  </section>
-	  <section>
-	    <p>Does example 2 describe a Bernoulli process? Why or why not?</p>
-	    <p class="fragment">What if we had access to 500,000 individuals, of whom 400,000 are employed, and had to sample only 10 of them?</p>
-	  </section>
-	  <section>
-	    <p>So the Bernoulli process can be seen as either sampling with replacement from a small dichotomous population (e.g. head vs. tails from coin tosses),</p>
-	    <p class="fragment">Or as sampling without replacement from a dichotomous population of size $N$, such that the number of trials $n$ is at most 5% of the population size (e.g. picking 3 items from a large manufacturing assembly line in order to test for defective parts).</p>
-	  </section>
-	</section>
-	<section>
-	  <section>
-	    <h3>The Binomial Random Variable</h3>
-	    The binomial random variable $X$ associated with a Bernoulli process (also known as binomial experiment) consisting of $n$ trials is defined as: $X \approx$ the number of $S$'s (successes) among the $n$ trials. 
-	  </section>
-	  <section>
-	    <h3>The Binomial Distribution</h3>
-	  <p>If $X$ is a binomial random variable, it will depend on two important parameters: $n$ the number of trials and $p$ the probability of success.</p>
-	  <p class="fragment">We denote the p.m.f of a binomial r.v. by $b(x; n, p)$.</p>
-	  </section>
-	  <section>
-	    <p>For example, consider tossing a biased coin with probability $p$ of showing $H$ead $= S$ four times:</p>
-	    <img src="img/binex.png" width="1400px">
-	    <p class="fragment"><small>Question: How many outcomes have 3 successes?</small></p>
-	  </section>
-	  <section>
-	    <h3>The Binomial p.m.f.</h3>
-	    $$b(x; n, p) = {n \choose x}p^x(1-p)^{n-x},$$
-	    where: $x = 0,1,2,...,n$,<br> $n$ is the number of trials and <br> $p$ is the probability of success.
-	  </section>
-	  <section data-background-image="img/cokevspepsi.jpg" data-background-opacity=".1">
-	    <h4>Example</h4>
-	    <p>Each of six randomly selected cola drinkers is given a glass containing cola S and one containing cola F. The glasses are identical in appearance except for a code on the bottom to identify the cola. </p>
-	    <p class="fragment">Suppose there is actually no tendency among cola drinkers to prefer one cola to the other, so that $p = P$(a selected individual prefers S) = 0.5. Let $X$ be the number among the six who prefer S, that is $X \sim Bin(6,0.5)$.</p>
-	  </section>
-	  <section>
-	    <p class="fragment">Compute $P(X = 3)$.</p>
-	    <p class="fragment">Compute $P(X \leq 5)$.</p>
-	  </section>
-	  <section>
-	    <h3>The Binomial C.D.F.</h3>
-	    $$B(x; n, p) = P(X \leq x) = \sum_x b(i; n, p),$$
-	    where: $x = 0,1,2,...,n$,<br> $n$ is the number of trials and <br> $p$ is the probability of success.
-	  </section>
-	  <section>
-	    <h3>Also good to know about...</h3>
-	    <img src="img/multinomial.png" width="1400px">
-	    <p class="fragment">However, we will spend more time with the binomial today!</p>
-	    <p class="fragment">You can read more about the multinomial distribution <a href="https://en.wikipedia.org/wiki/Multinomial_distribution" target="_blank">here.</a></p>
-	    </section>
-	</section>
-	<section>
-	  <section>
-	    <h3>Mean and Variance of a Binomial R.V.</h3> <h4>(then we will do some examples!)</h4>
-	    <p>Let $X \sim Bin(n,p)$, then $E(X) = np$, $Var(X) = np(1-p)$</p>
-	    <p class="fragment">Homework problem: using the binomial p.m.f. and the definition of expectation, prove the statement above.</p>
-	    <p class="fragment"><small>This <a href="https://newonlinecourses.science.psu.edu/stat414/node/71/" target="_blank">link</a> can help, if you are stuck.</small></p>
-	  </section>
-	 <section data-background-iframe="https://shiny.rit.albany.edu/stat/binomial/" data-background-interactive>
-	   <div style="position: absolute; width: 40%; bottom: 0; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
-	     <h2>Shape and Position</h2>
-	     <p>How do the parameters $n$ and $p$ affect the shape of the binomial distribution?</p>
-	   </div>
-	 </section>
-	 <section data-background-iframe="https://shiny.rit.albany.edu/stat/binomial/" data-background-interactive>
-	 </section>
-	</section>
-	<section>
-	  <h3>Computing Probabilities of Binomial R.V.'s</h3>
-	  <p>We have several ways!</p>
+	  <h4>What we will cover we will cover today:</h4>
 	  <ul>
-	    <li class="fragment">By hand</li>
-	    <li class="fragment">With a calculator</li>
-	    <li class="fragment">Using R, or other software</li>
-	    <li class="fragment">Using a table (like $A.1$ on $pp. \ 726-727$)</li>
+	    <li class="fragment">Multiplication Rule (2.3)</li>
+	    <li class="fragment">Permutations (2.3)</li>
+	    <li class="fragment">Combinations (2.3)</li>
+	    <li class="fragment">The Probability of an Event (2.4)</li>
+	  </ul>
+	</section>
+	<section>	  
+	  <section>
+	    <h4>Multiplication Rule</h4>
+	    <p>We use the multiplication rule whenever we have multiple "moving parts" but they combine to form one outcome.</p>
+	    <p class="fragment">For example, you are going to a party and have narrowed down your clothing to 4 shirts, 3 pants, 2 pairs of shoes, and 2 hats. You can only wear one of each to the party. How many different ensembles can you create?</p>
+	  </section>
+	  <section data-background-image="img/hatshoe.jpg" data-background-opacity=".3">
+	  <h4>Multiplication Rule</h4>
+	  Let's see...
+	  <ol>
+	    <li class="fragment">With the fedora:
+	      <ol>
+		<li class="fragment">you can wear any of the shirts, say you pick the black one. With the black shirt...</li>
+		<li class="fragment">pants, say you pick the green one. With the green one...</li>
+		<li class="fragment">and pairs of shoes, say you pick your cool boots. With the boots...</li>
+	      </ol>
+	    </li>
+	    <li class="fragment">With the bonnet, you can wear any of the shirts, pants and pairs of shoes</li>
+	  </ol>
+	  <br>
+	  <p class="fragment">You get the gist.</p>
+	  </section>
+	  <section>
+	    <b>Multiplication Rule</b>
+	    <br>
+	    If an operation can be performed in <span class="fragment highlight-red">$n_1$ ways</span>, and if for each of these a second operation can be performed in <span class="fragment highlight-red">$n_2$ ways</span>,
+	    and for each of the first two a third operation can be performed in <span class="fragment highlight-red">$n_3$ ways</span>, and so forth, then the sequence of $k$
+	    operations can be performed in <span class="fragment highlight-red">$n_1n_2 \dots n_k$ ways</span>.
+	  </section>
+	</section>
+	<section>
+	  <section data-background-image="img/quantum.gif" data-background-opacity=".5">
+	    <h4>Permutations</h4>
+	    <p>We care about permutations when we are concerned about the order of our sample or subsample.</p>
+	    <p class="fragment">For example, that T/F quantum physics quiz I gave you yesterday in which you completely guessed the answers to four distinct questions.</p>
+	    <p class="fragment">We figured out via the multiplication rule that there were 16 different ways to guess...that is</p>
+	    <p class="fragment"> 16 different permutations of 4 T's and F's.</p>
+	  </section>
+	  <section>
+	    <h4>Permutations</h4>
+	    <p>Picture yourself holding an urn containing two marbles: a <span class="fragment highlight-green">green</span> and a <span class="fragment highlight-red">red</span>.</p>
+	    <ul>
+	    <li class="fragment">It is random-guesses quiz time. Instructions: for each question draw a marble from your bag.</li>
+	    <li class="fragment">If it is <span class="fragment highlight-green">green</span>, answer <span class="fragment highlight-green">T</span> for that question. If it is <span class="fragment highlight-red">red</span>, answer <span class="fragment highlight-red">F</span> for that question.</li>
+	    <li class="fragment">Put the marble back in the bag, move on to the next question.</li>
+	    <li class="fragment">Since you always replace the marble, each question can have one of two answers!</li>
 	    </ul>
 	  </section>
+	  <section data-background-image="img/marbles.jpg" data-background-opacity=".1">
+	    <h4>Permutations</h4>
+	    <p>As a teacher though I had a different problem when I was making your quiz..."do I pick the entanglement question to be the first or the last? what about the particle spin question?!"</p>
+	     <ol>
+	    <li class="fragment">It is random-making quiz time. Instructions: Place 4 labeled marbles $\{a, b, c, d\}$ in a bag.</li>
+	    <li class="fragment">Draw one out - say it is $c$, this will be the first question. Don't replace it, a quiz with repeat questions is boring!</li>
+	    </ol>
+	  </section>
+	  <section data-background-image="img/moremarbles.jpg" data-background-opacity=".2">
+	    <ol start="3">
+	      <li class="fragment">Now there are 3 marbles in the bag, draw one - say it is $a$, this will be the second question. Don't replace it!</li>
+	      <li class="fragment">Now there are 2 marbles in the bag, draw one...</li>
+	      <li class="fragment">Now there is 1 marble in the bag, draw it. Done, we have a quiz ordering, say - $cadb$.</li>
+	    </ol>
+	  </section>
+	  <section>
+	    <ol start="6">
+	     <li class="fragment">That is, I had 4 choices for the first questions, 3 for the second, 2 for the third and 1 for the fourth by sampling distinct objects without replacement.</li>
+	     <li class="fragment">Factorial definition: $n! = n(n-1)(n-2)...(2)(1)$ with $0! = 1$</li>
+	    </ol>
+	    <p class="fragment">How many passwords of length 5 can you make using the letters of the alphabet, if:</p>
+	    <ul>
+	      <li class="fragment">each letter must be unique?</li>
+	      <li class="fragment">each letter can be repeated?</li>
+	      </ul>
+	    </section>
+	  <section>
+	    <h4>Permutations</h4>
+	    <p>Another idea we should be aware of when dealing with permutations is non uniqueness, such as permuting the letters of the word "statistics".</p>
+	    <p class="fragment">This is a different case then the previous ones, since if we were to put labeled marbles in a bag, there would be one for $s_1$, one for $s_2$, one for $s_3$, ... that is, the bag would have all the repeats as if they were distinct.</p>
+	    <p class="fragment">However, when we draw a marble labeled $s_2$, we smudge out the subscript and treat it like an indistinguishable $s$.</p>
+	    
+	  </section>
+	  <section>
+	    <p>That is, the anagram $s_1s_3s_2t_3a_1c_1i_2t_1i_1t_2$ is indistinguishable from the anagram $s_3s_1s_2t_2a_1c_1i_1t_1i_2t_3$.</p>
+	    <p class="fragment">Both spell out "ssstacitit".</p>
+	    <p class="fragment">Any ideas how we would count all the permutations for anagrams of the word "statistics"?</p>
+	    <img class="fragment" src="img/anagram.jpg" width="200px">
+	  </section>
+	  <section>
+	    <h4>Idea:</h4>
+	    <ol>
+	      <li class="fragment">Treat all letters as unique: $s_1 \neq s_2 \neq s_3$ and so on for the others. That is, think of statistics having 10 unique letters and solve the old problem of counting all the permutations: 10!</li>
+	      <li class="fragment">Counted by those 10! permutations are the permutations of the $s$ letters amongst each other, 3! of them. However we don't care about the order of the $s$'s in the anagram. So we undo the counting of permuted $s$'s by dividing: 10!/3!</li>
+	    </ol>
+	  </section>
+	  <section>
+	    <ol start="3">
+	      <li>Do this for all repeated letters and get the following count: $$\frac{10!}{3!3!2!}$$</li>
+	    </ol>
+	    <div class="fragment">
+	      <p>In general:</p>
+	      <img src="img/permute.png" width="1400px">
+	    </div>
+	  </section>
+	  <section>
+	    <h4>Circles</h4>
+	    Circular arragements are special:
+	    <img src="img/circles.png" width="1400px">
+	    <p class="fragment">If you want to arrange $n$ objects in a circle, then there are $(n-1)!$ ways to do it. This is because you can rotate the circle $n$ times and it is still the same circle.</p>
+	  </section>
+	</section>
 	<section>
-	  <h3>Example and Homework</h3>
-	  <p>We will do these exercises in class: 5.11, 5.22</p>
-	  <p>You will do these for homework: 5.9, 5.12, 5.18, 5.20</p>
+	  <section>
+	    <h4>Combinations</h4>
+	    <p>Combinations are like permutations when order does not matter. The question it answers is: "In how many ways can I make a subset of the elements of a given set?"</p>
+	    <p class="fragment">It is like you have a bag with $n$ marbles and you want to draw $r$ of them to put in another bag.</p>
+	    <p class="fragment">$${n \choose r} = \frac{n!}{r!(n-r)!}$$
+	  </section>
+	  <section data-background-image="img/homework.jpg" data-background-opacity=".05">
+	   More Homework 1 problems: 2.38, 2.45
+	  </section>
+	</section>
+
+	<section>
+	  <section>
+	    <h4>Probability of an Event</h4>
+	    <p>Informally, the probability of an event is a number between 0 and 1 such that:</p>
+	    <ul>
+	      <li>If the number is close to 0, then the event is not likely;</li>
+	      <li>If the number is close to 1, then the event is very likely;</li>
+	    </ul>
+	    <p class="fragment"> Question: Discuss examples of events that have $P=0$ (practically impossible) and events that have $P=1$ (definitely will happen as far as we can understand reality).</p>
+	  </section>
+	  <section  data-background-image="img/facecards.jpg" data-background-opacity=".1">
+	    <h4>Relative Frequencies</h4>
+	    <p>We assign the probability number via the ratio between the number of ways the event can happen and the total size of the sample space.</p>
+	    <p class="fragment">That is, let $A$ be the event we are interested in (say drawing a Jack, a Queen and a King from a deck of 52 shuffled cards) and let $S$ denote the sample space (all possible shufflings of 52 cards), then:</p>
+	  </section>
+	  <section data-background-image="img/facecards.jpg" data-background-opacity=".1">
+	    <p>$$P(A) = \frac{n(A)}{n(S)}$$  - where $P(.)$ denotes "the probability of" and $n(.)$ denotes "number of points in the set."</p>
+	    <p class="fragment">Question: What is the probability of drawing a Jack, a Queen and a King from any suit (order does not matter) from a shuffled deck of 52 cards?</p>
+	  </section>
+	  <section>
+	    <h4>Formally we have:</h4>
+	    <img src="img/probability.png" width="1400px">
+	  </section>
 	</section>
       </div>
     </div>

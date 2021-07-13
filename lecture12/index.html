@@ -7,7 +7,7 @@
     <title>STAT 360 Lecture 12</title>
 
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/solarized.css">
+    <link rel="stylesheet" href="css/theme/night.css">
 
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -25,196 +25,186 @@
     <div class="reveal">
       <div class="slides">
 	<section>
-	  The Poisson and Other Fish!
-	  <br><img src="img/Poisson.jpg" width="300px"><br>
+	  Great Expectations
+	  <br><img src="img/greatexpectations.jpeg" width="500px"><br>
 	  STAT 360 - Lecture 12
 	</section>
 	<section>
 	  <h3>What we will cover today:</h3>
-	  <ol>
-	    <li class="fragment">Last time in Discretown:
-	      <ul>
-		<li>Negative Binomial</li>
-		<li>Geometric</li>
-		</ul>
-	    <li class="fragment">Poisson Distribution</li>
-	    <li class="fragment">Midterm 1 Review</li>
-	    </ol>
+	  <ul>
+	    <li class="fragment">What does it "mean"?</li>
+	    <li class="fragment">Discrete Random Variable Mean</li>
+	    <li class="fragment">Continuous Random Variable Mean</li>
+	    <li class="fragment">Multivariate Expectation</li>
+	    <li class="fragment">Variance: the spread of a distribution</li>
+	    <li class="fragment">Covariance: Multivariate Variance</li>
+	    <li class="fragment">The Correlation Coefficient</li>
+	  </ul>
 	</section>
-	
 	<section>
-	  <section data-background-image="img/nb.png" data-background-opacity=".5"></section>
-	  <section data-background-image="img/nb.png" data-background-opacity=".1">
-	    <h3>Last Time in Discretown!</h3>
-	    <h4>The Negative Binomial</h4>
-	    <p>Some good questions were raised:</p>
-	    <ul>
-	      <li class="fragment">What's the deal with ${x - 1  \choose k -1}$?</li>
-	      <li class="fragment">Why is it called negative?</li>
-	      </ul>
+	  <section>
+	    <h3>What does it "mean"?</h3>
+	    <p>The expected value or the expectation of a particular random variable signifies the <b>mean</b> of the population.</p>
+	    <p class="fragment"><i>This is not the same as the average of a sample!</i> Expectation would be the average one would get for the entire population given the probability density of each sample point.</p>
 	  </section>
-	  <section data-background-image="img/nb.png" data-background-opacity=".5"></section>
-	  <section data-background-image="img/nb.png" data-background-opacity=".1">
-	    <h4>What's the deal with ${x - 1  \choose k -1}$?</h4>
-	    <p class="fragment">Since the Negative Binomial distribution gives us the probability of having to run $x$ trials in order to get $k$ successes, then when we get the $k^{th}$ success we stop counting on the $x^{th}$ trial.</p>
-	      <p class="fragment">This means that we can choose the prior $k-1$ successes from $x-1$ trials randomly and in whatever order they come.</p> 
-	  </section>
-	   <section data-background-image="img/nb.png" data-background-opacity=".1">
-	    <h4>Why is it called negative?</h4>
-	    <p class="fragment">The formulation we learned from the book counts the number of trials needed to get $k$ successes.</p>
-	    <p class="fragment">There are several different formulations for the same problem. Another is letting $X$ count the number of successes giver $r$ failures: ${k+r-1 \choose k}$.</p>
-	    <p class="fragment">With a little bit of algebra: $\frac{(k+r-1)\dots(r)}{k!} = (-1)^k\frac{(-r)(-r-1)\dots(-r-k+1)}{k!} = (-1)^k{-r \choose k}$.</p>
-	     <p class="fragment">So we are choosing successes from negative failures!</p>
+	  <section data-background-image="img/dice.jpg" data-background-opacity=".2">
+	    <b>For example:</b>
+	    <p class="fragment">Let's toss a 6-sided die many times. In the long run, what would be the average of our tosses?</p>
+	    <span class="fragment fade-in-then-out">3</span><span class="fragment fade-in-then-out">6</span><span class="fragment fade-in-then-out">1</span><span class="fragment fade-in-then-out">3</span><span class="fragment fade-in-then-out">4</span><span class="fragment fade-in-then-out">2</span><span class="fragment fade-in-then-out">1</span><span class="fragment fade-in-then-out">6</span><span class="fragment fade-in-then-out">5</span><span class="fragment fade-in-then-out">...</span>
+	    <p class="fragment">Ok, so $\frac{1}{6}$ of the time we would get 1, $\frac{1}{6}$ of the time we would get 2, $\frac{1}{6}$ of the time we would get 3, and so on up to 6.</p>
+	    <p class="fragment">So we expect to get the weighted average of $\frac{1}{6}(1+2+3+4+5+6) = \frac{21}{6} = \frac{7}{2}$.</p>
 	  </section>
 	  <section>
-	    <h4>Expectation and Variance</h4>
-	    <p class="fragment">The expected value of a negative binomial r.v. is: $\mu = \frac{k}{p}$.</p>
-	    <p class="fragment">The variance of a negative binomial r.v. is: $\sigma^2 = \frac{k(1-p)}{p^2}$.</p>
-	    <p class="fragment">The expectation and variance of a geometric r.v. can be obtain from the above by letting $k=1$.</p>
-	  </section>
-	  <section data-background-image="img/baseball.jpg" data-background-opacity=".1">
-	    <h4>Example</h4>
-	    <p>Team $A$ plays team $B$ in a seven-game world series, so the series is over when either team wins four games.</p>
-	    <p>For each game, $P(A$ wins$) = 0.6$, and the games are assumed independent.</p>
-	    <p>What is the probability that the series will end in exactly six games?</p>
-	  </section>
-	  <section  data-background-image="img/dory.jpg" data-background-opacity=".1">
-	    <h4>No Memory Property</h4>
-	    <p>A special property of the geometric distribution is the no-memory property: If $X \sim Geo(p)$, then $P(X > j + k | X > j) = P(X > k)$.</p>
-	    <p class="fragment">Given the CDF of the geometric distribution $G(x;p) = \sum_{i=1}^x p(1-p)^{i-1} = 1 - (1- p)^x$, for $x = 1,2,3,\dots$ (derived in a previous lecture), prove the no-memory property of the geometric distribution.</p>
+	    Get it?
+	    <p class="fragment">We are adding up the product between each value in the support of the random variable  $X$ (in the previous example that is the face value of the die) and its weight (in the case on a unbiased die, each face has equal chance of showing up).</p>
 	  </section>
 	</section>
 	<section>
 	  <section>
-	    <h3>The Poisson Distribution</h3>
-	    <p>There are two main characteristics of a Poisson experiment:</p>
+	    <h3>Discrete Random Variable Mean</h3>
+	    Let $X$ be a discrete random variable with probability mass function $f(x)$, then the <b>expectation</b> of $X$ is:
+	    <br>
 	    <div class="fragment">
-	      <img src="img/FindingDory.jpg" width="300px">
-	      <p>Wait a minute! Experiments with fish?!?</p>
+	  $$
+	  \mu = E(X) = \sum_x xf(x)
+	  $$
+	  </div>
+	  </section>
+	  <section data-background-image="img/diceandmoney.jpg" data-background-opacity=".2">
+	    <b>How about we make this interesting?</b>
+	    <p class="fragment">If an odd number comes up, you give me 2 $\times$ face value + 1 dollars. If an even number comes up, I give you (3 $\times$ face value - 1)/2. Let's play?</p>
+	    <p class="fragment">$\frac{1}{2}$ of the time you will lose...how much? <span class="fragment">$\frac{1}{6}((2*1+1)+(2*3+1)+(2*5+1)) = \frac{1}{6}(21)$ $ = \frac{7}{2}$ dollars</span>
+	    <p class="fragment">$\frac{1}{2}$ of the time you will win...how much? <span class="fragment">$\frac{1}{6}((3*2-1)/2+(3*4-1)/2+(3*6-1)/2) = \frac{1}{6}(\frac{33}{2})$ $ = \frac{11}{4}$ dollars</span>
+	  </section>
+	  <section>
+	    <b>My point is...</b>
+	    <p class="fragment">Sometimes we are not interested on the weighted mean of a r.v.'s support set values, but instead a function of those values.</p>
+	    <p class="fragment">Like the amount of dollars you can win from a game of chance, or the average number of minutes (modeled discretely) you have to wait for a bus as a function of the bus driver's caffeine level, or...</p>
+	    <p class="fragment">What are some other examples?</p>
+	  </section>
+	  <section>
+	    <h4>Discrete Random Variable Mean (more generally)</h4>
+	    Let $X$ be a discrete random variable with probability mass function $f(x)$, and let $u(X)$ be a function whose domain is the support set of $X$. Then the <b>expectation</b> of $u(X)$ is:
+	    <br>
+	    <div class="fragment">
+	  $$
+	  \mu_u = E(u(X)) = \sum_x u(x)f(x)
+	  $$
 	    </div>
-	    <p class="fragment">No Dory...Poisson refers to the distribution...remember...ah...no, ok.</p>
 	  </section>
-	  <section  data-background-image="img/poispmf.png" data-background-opacity=".1">
-	    <h3>The Poisson Distribution</h3>
-	    <p>There are two main characteristics of a Poisson experiment:</p>
-	    <ol>
-	      <li class="fragment">We want to count the number of events occurring in a fixed interval of time or space if these events happen with a known average rate and independently of the time since the last event.</li>
-	      <li class="fragment">We want to approximate a binomial experiment if the probability of success is "small" (such as 0.01) and the number of trials is "large" (such as 1,000).</li>
-	      </ol>
-	  </section>
-	  <section data-background-image="img/mailboxes.jpg" data-background-opacity=".1">
-	    <h4>For example:</h4>
-	    <p>Suppose you typically get 4 pieces of mail per day. That becomes your expectation, but there will be a certain spread: sometimes a little more, sometimes a little less, once in a while nothing at all.</p>
-	    <p class="fragment">Given only the average rate, for a certain period of observation (e.g. pieces of mail per day), and assuming that the process that produce the event flow is essentially random, the Poisson Distribution will tell you how likely it is that you will get 3, or 5, or 11, or any other number, during one period of observation.</p>
-	  </section>
-	  <section>
-	    <p>That is, it predicts the degree of spread around a known average rate of occurrence.</p>
-	  </section>
-	  <section>
-	    <h4>The Poisson p.m.f.</h4>
-	    <p>Suppose we are watching for events and the number of observed events follows a Poisson distribution with rate $\lambda$. Then</p>
-	    <p class="fragment">$$P(X=x) = \frac{\lambda^xe^{-\lambda}}{x!}$$</p>
-	    <p class="fragment">where $x=0,1,2,\dots$</p>
-	  </section>
-	  <section data-background-image="img/horsekick.jpg" data-background-opacity=".2">
-	    <h4>A Classic Example</h4>
-	    <p>The classic Poisson example is the data set of von Bortkiewicz (1898), for the chance of a Prussian cavalryman being killed by the kick of a horse.</p>
-	    <p class="fragment">Ten army corps were observed over 20 years, giving a total of 200 observations of one corps for a one year period. The total deaths from horse kicks were 122, and the average number of deaths per year per corps was thus 122/200 = 0.61.</p>
-	  </section>
-	  <section data-background-image="img/corphorse.jpg" data-background-opacity=".2">
-	    <p>In any given year, we wouldn't expect to observe exactly 0.61 deaths in one corps (that is not possible; deaths occur in modules of 1), but sometimes none, sometimes one, occasionally two, perhaps once in a while three, and (we might intuitively expect) very rarely any more. </p>
-	  </section>
-	  <section>
-	    <h4>A Classic Poisson Situation</h4>
-	    A rare event, whose average rate is small, with observations made over many small intervals of time.For the entire set of Prussian data, where p = the predicted Poisson frequency for a given number of deaths per year, E is the corresponding number of years in which that number of deaths is expected to occur in our 200 samples (that is, our p value times 200), and A is the actual number of years in which that many deaths were observed, we have:
-	    </section>
-	    <section  data-background-image="img/horsekickbars.png" data-background-opacity=".1">
-	   <table>
-	     <thead>
-	       <tr>
-		 <th>Deaths</th>
-		 <th>p</th>
-		 <th>E</th>
-		 <th>A</th>
-	       </tr>
-	     </thead>
-	     <tbody>
-	       <tr>
-		 <td>0</td>
-		 <td>0.54335</td>
-		 <td>108.67</td>
-		 <td>109</td>
-	       </tr>
-	       <tr>
-		 <td>1</td>
-		 <td>0.33145</td>
-		 <td>66.29</td>
-		 <td>65</td>
-	       </tr>
-	       <tr>
-		 <td>2</td>
-		 <td>0.10110</td>
-		 <td>20.22</td>
-		 <td>22</td>
-	       </tr>
-	       <tr>
-		 <td>3</td>
-		 <td>0.02055</td>
-		 <td>4.11</td>
-		 <td>3</td>
-	       </tr>
-	       <tr>
-		 <td>4</td>
-		 <td>0.00315</td>
-		 <td>0.63</td>
-		 <td>1</td>
-	       </tr>
-	       <tr>
-		 <td>5</td>
-		 <td>0.00040</td>
-		 <td>0.08</td>
-		 <td>0</td>
-	       </tr>
-	       <tr>
-		 <td>6</td>
-		 <td>0.00005</td>
-		 <td>0.01</td>
-		 <td>0</td>
-	       </tr>
-	     </tbody>
-	   </table>
-	    </section>
 	</section>
 	<section>
-	  <section data-background-image="img/uber.jpg" data-background-opacity=".1">
-	    <h4>Binomial in the Limit</h4>
-	    <p>Uber is interested in solving the following problem: what is the probability of getting one ride request, two ride requests, etc from a particular location?</p>
-	    <p class="fragment">After analyzing historical records, they conclude that the average request per minute is 5. Can they figure out their probability question just from this information?</p>
-	  </section>
-	 <section data-background-image="img/uber.jpg" data-background-opacity=".1">
-	    <h4>Binomial in the Limit</h4>
-	    <p>Let $X$ be the number of ride requests in the next minute. Let's find $P(X=k)$ using the binomial distribution!</p>
-	    <p class="fragment">Split the minute into 60 seconds and count "success" for a request coming in a second and "failure" for no request coming in that second. If requests are equally likely, the the probability of success is 5/60.</p>
-	  </section>
 	  <section>
-	    <img src="img/requests.png" width="1400px">
-	    <p class="fragment">Great! so $X \sim Bin(n = 60, p = 5/60)$:</p>
-	    <p class="fragment">$$P(X=k) = {60 \choose k}\left(\frac{5}{60}\right)^k\left(1-\frac{5}{60}\right)^{60-k}$$</p>
-	    <p class="fragment">Uber great! But what if we get 2 request in a second??</p>
+	    <h3>Continuous Random Variable Mean</h3> <h4>(and let's just go straight to the more general case!)</h4>
+	    Let $X$ be a continuous random variable with probability density function $f(x)$ and let $u(X)$ be a function whose domain is the support set of $X$. Then the <b>expectation</b> of $u(X)$ is:
+	    <br>
+	    <div class="fragment">
+	  $$
+	  \mu_u = E(u(X)) = \int_{-\infty}^{\infty} u(x)f(x)dx
+	  $$
+	  </div>
 	  </section>
+	  <section data-background-image="img/train.jpeg" data-background-opacity=".1">
+	    <h4>An Example</h4>
+	    <p>Suppose a train arrives shortly after 1:00PM each day, and that the number of minutes after 1:00 that the train arrives can be modeled as a continuous random variable with density:</p>
+	    <p>$f(x) = 2(1-x)$ for $0 \leq x \leq 1$ and 0 otherwise.</p>
+	    <p>Find the expectation of the number of minutes the train arrives after 1:00PM.</p>
+	  </section>
+	  <section data-background-image="img/train.jpeg" data-background-opacity=".1">
+	    <h4>An Example</h4>
+	    <div class="fragment">
+	    $$
+	    \mu_u = E(u(X) = X) = \int_{-\infty}^{\infty} xf(x)dx
+	    $$
+	    </div>
+	    <br>
+	    <div class="fragment">
+	    $$
+	    = \int_0^1 x\cdot 2(1-x)dx = \int_0^1 2x - 2x^2dx
+	    $$
+	    </div>
+	    <br>
+	    <div class="fragment">
+	    $$
+	    = \left(x^2 - 2\frac{x^3}{3}\right)_{x=0}^{x=1} = \frac{1}{3}
+	    $$
+	    </div>
+	  </section>
+	</section>
+	<section>
 	  <section>
-	    <small><p>Ok then, cut it in milliseconds!...and don't ask me what if 2 request in a millisecond!!</p>
-	    <p class="fragment">Maybe Uber hires a mathematician to help:</p></small>
-	    <img class="fragment" src="img/inthelimit.png" width="1400px">
+	    <h3>Multivariate Expectation</h3>
+	    <p>This is the expected value of a function of several random variables (which is also a random variable). The weights for computing the expectation will depend on the joint probability distribution of the random variables involved.</p>
+	    <p class="fragment">As stated in your book for both discrete and continuous random variables we have:</p>
 	    </section>
-	  <section>
-	    <h4>Expectation of a Poisson R.V.</h4>
-	    <img src="img/poissonex.png" width="700px">
+	  <section data-transition="zoom">
+	    <img src="img/multiexp.png" width="1400px">
 	  </section>
 	  <section>
-	    <h4>Variance of a Poisson R.V.</h4>
-	    <img src="img/poisvar.png" width="1400px">
+	    <h4>Example</h4>
+	    <p>Let $X$ and $Y$ have the pdf:
+	      $$ f(x,y) = 8xy, 0 < x < y < 1 $$
+					   and 0 otherwise.</p>
+					   <br>
+					   <p>Find the expected value of $g(X,Y) = XY^2$.</p>
+
 	  </section>
+	</section>
+
+	<section>
+	  <section data-background-image="img/variance.png" data-background-opacity="1">
+	    <h3>Variance: the spread of a distribution</h3>
+	    <p>Variance is the expectation of $u(X) = (X - \mu)^2$.</p>
+	    <p class="fragment"> In simple English: variance is the average of the squared differences from the population mean.</p>
+	  </section>
+	  <section>
+	    <h4>Important:</h4>
+	    <img src="img/th42.png" width="1400px">
+	  </section>
+	   <section>
+	    <h4>Theorem 4.3:</h4>
+	    <img src="img/th43.png" width="1400px">
+	  </section>
+	</section>
+	<section>
+	  <section>
+	    <h3>Covariance</h3>
+	    <p>Covariance is a quantitative measure of the comparison of the change between one variable and its mean and the change between another variable and their mean.</p>
+	    <div class="fragment">
+	      <img src="img/covariance.png" width="700px">
+	      <br>
+	      <small><i><a href="covariance.pdf" target="_blank">source</a></i></small>
+	    </div>
+	  </section>
+	  <section>
+	    <p>So this is a measure of association between two variables.</p>
+	    <p class="fragment">If both $X$ and $Y$ are above (or below) their respective means, they we will have that $$Cov(X,Y) = E[(X - E[X])(Y - E[Y])]$$ is positive.</p>
+	    <p class="fragment">If either $X$ or $Y$ (but not both) is above (or below) its respective mean, then the covariance (same expression as above) will be negative.</p>
+	  </section>
+	  <section data-background-image="img/cassini.gif" data-background-opacity="1">
+	  </section>
+	  <section data-background-image="img/cassini.gif" data-background-opacity=".2">
+	    <h4>NASA cares about covariance</h4>
+	    <p class="fragment">We often have multiple variables influencing the outcome of an experiment!</p>
+	    <div class="fragment">
+	    <img src="img/nasacovariance.png" width="1000px">
+	      <br>
+	      <small><i><a href="cassini.pdf" target="_blank">source</a></i></small>
+	      </div>
+	  </section>
+	  <section>
+	    <h4>We can re-write the covariance formula as:</h4>
+	    <img src="img/covar.png" width="900px">
+	  </section>
+	  <section>
+	    <h3>The Correlation Coefficient</h3>
+	    <p>For r.v.'s $X$ and $Y$, simply put is the ratio between their covariance and the product of their respective standard deviations.</p>
+	    <p class="fragment">$$ \rho(X,Y) = \frac{Cov(X,Y)}{\sqrt{Var(X)}\sqrt{Var(Y)}} $$</p>
+	    <p class="fragment">This is just a convenient normalization of the covariance done to extract the relevant information, for it gets rid of units and keeps the magnitude in the range [0,1].</p>
+	  </section>
+          <section>
+              <p>Let's try exercises 4.50 and 4.52 together!</p>
+	</section>
 	</section>
       </div>
     </div>
