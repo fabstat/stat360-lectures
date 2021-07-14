@@ -1,0 +1,240 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>STAT 360 Lecture 9</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+	<section>
+	  Linear Combinations of Random Variables and Chebyshev's Theorem
+	  <br><img src="img/greatexpectations.jpeg" width="500px"><br>
+	  STAT 360 - Lecture 9
+	</section>
+	<section>
+	  <h3>What we will cover we will cover today:</h3>
+	  <ul>
+	    <li class="fragment">What does it "mean"?</li>
+	    <li class="fragment">Discrete Random Variable Mean</li>
+	    <li class="fragment">Continuous Random Variable Mean</li>
+	    <li class="fragment">Multivariate Expectation</li>
+	    <li class="fragment">Variance: the spread of a distribution</li>
+	    <li class="fragment">Covariance: Multivariate Variance</li>
+	    <li class="fragment">The Correlation Coefficient</li>
+	  </ul>
+	</section>
+	<section>	  
+	  <section>
+	    <h3>What does it "mean"?</h3>
+	    <p>The expected value or the expectation of a particular random variable signifies the <b>mean</b> of the population.</p>
+	    <p class="fragment"><i>This is not the same as the average of a sample!</i> Expectation would be the average one would get for the entire population given the probability density of each sample point.</p>
+	  </section>
+	  <section data-background-image="img/dice.jpg" data-background-opacity=".3">
+	    <b>For example:</b>
+	    <p class="fragment">Let's toss a 6-sided die many times. In the long run, what would be the average of our tosses?</p>
+	    <span class="fragment fade-in-then-out">3</span><span class="fragment fade-in-then-out">6</span><span class="fragment fade-in-then-out">1</span><span class="fragment fade-in-then-out">3</span><span class="fragment fade-in-then-out">4</span><span class="fragment fade-in-then-out">2</span><span class="fragment fade-in-then-out">1</span><span class="fragment fade-in-then-out">6</span><span class="fragment fade-in-then-out">5</span><span class="fragment fade-in-then-out">...</span>
+	    <p class="fragment">Ok, so $\frac{1}{6}$ of the time we would get 1, $\frac{1}{6}$ of the time we would get 2, $\frac{1}{6}$ of the time we would get 3, and so on up to 6.</p>
+	    <p class="fragment">So we expect to get the weighted average of $\frac{1}{6}(1+2+3+4+5+6) = \frac{21}{6} = \frac{7}{2}$.</p>
+	  </section>
+	  <section>
+	    Get it?
+	    <p class="fragment">We are adding up the product between each value in the support of the random variable  $X$ (in the previous example that is the face value of the die) and its weight (in the case on a unbiased die, each face has equal chance of showing up).</p>
+	  </section>
+	</section>
+	<section>
+	  <section>
+	    <h3>Discrete Random Variable Mean</h3>
+	    Let $X$ be a discrete random variable with probability mass function $f(x)$, then the <b>expectation</b> of $X$ is:
+	    <br>
+	    <div class="fragment">
+	  $$
+	  \mu = E(X) = \sum_x xf(x)
+	  $$
+	  </div>
+	  </section>
+	  <section data-background-image="img/diceandmoney.jpg" data-background-opacity=".3">
+	    <b>How about we make this interesting?</b>
+	    <p class="fragment">If an odd number comes up, you give me 2 $\times$ face value + 1 dollars. If an even number comes up, I give you (3 $\times$ face value - 1)/2. Let's play?</p>
+	    <p class="fragment">$\frac{1}{2}$ of the time you will lose...how much? <span class="fragment">$\frac{1}{6}((2*1+1)+(2*3+1)+(2*5+1)) = \frac{1}{6}(21)$ $ = \frac{7}{2}$ dollars</span>
+	    <p class="fragment">$\frac{1}{2}$ of the time you will win...how much? <span class="fragment">$\frac{1}{6}((3*2-1)/2+(3*4-1)/2+(3*6-1)/2) = \frac{1}{6}(\frac{33}{2})$ $ = \frac{11}{4}$ dollars</span>
+	  </section>
+	  <section>
+	    <b>My point is...</b>
+	    <p class="fragment">Sometimes we are not interested on the weighted mean of a r.v.'s support set values, but instead a function of those values.</p>
+	    <p class="fragment">Like the amount of dollars you can win from a game of chance, or the average number of minutes (modeled discretely) you have to wait for a bus as a function of the bus driver's caffeine level, or...</p>
+	    <p class="fragment">What are some other examples?</p>
+	  </section>
+	  <section>
+	    <h4>Discrete Random Variable Mean (more generally)</h4>
+	    Let $X$ be a discrete random variable with probability mass function $f(x)$, and let $u(X)$ be a function whose domain is the support set of $X$. Then the <b>expectation</b> of $u(X)$ is:
+	    <br>
+	    <div class="fragment">
+	  $$
+	  \mu_u = E(u(X)) = \sum_x u(x)f(x)
+	  $$
+	    </div>
+	  </section>
+	</section>
+	<section>
+	  <section>
+	    <h3>Continuous Random Variable Mean</h3> <h4>(and let's just go straight to the more general case!)</h4>
+	    Let $X$ be a continuous random variable with probability density function $f(x)$ and let $u(X)$ be a function whose domain is the support set of $X$. Then the <b>expectation</b> of $u(X)$ is:
+	    <br>
+	    <div class="fragment">
+	  $$
+	  \mu_u = E(u(X)) = \int_{-\infty}^{\infty} u(x)f(x)dx
+	  $$
+	  </div>
+	  </section>
+	  <section data-background-image="img/train.jpeg" data-background-opacity=".2">
+	    <h4>An Example</h4>
+	    <p>Suppose a train arrives shortly after 1:00PM each day, and that the number of minutes after 1:00 that the train arrives can be modeled as a continuous random variable with density:</p>
+	    <p>$f(x) = 2(1-x)$ for $0 \leq x \leq 1$ and 0 otherwise.</p>
+	    <p>Find the expectation of the number of minutes the train arrives after 1:00PM.</p>
+	  </section>
+	  <section data-background-image="img/train.jpeg" data-background-opacity=".2">
+	    <h4>An Example</h4>
+	    <div class="fragment">
+	    $$
+	    \mu_u = E(u(X) = X) = \int_{-\infty}^{\infty} xf(x)dx
+	    $$
+	    </div>
+	    <br>
+	    <div class="fragment">
+	    $$
+	    = \int_0^1 x\cdot 2(1-x)dx = \int_0^1 2x - 2x^2dx
+	    $$
+	    </div>
+	    <br>
+	    <div class="fragment">
+	    $$
+	    = \left(x^2 - 2\frac{x^3}{3}\right)_{x=0}^{x=1} = \frac{1}{3}
+	    $$
+	    </div>
+	  </section>
+	</section>
+	<section>
+	  <section>
+	    <h3>Multivariate Expectation</h3>
+	    <p>This is the expected value of a function of several random variables (which is also a random variable). The weights for computing the expectation will depend on the joint probability distribution of the random variables involved.</p>
+	    <p class="fragment">As stated in your book for both discrete and continuous random variables we have:</p>
+	    </section>
+	  <section data-transition="zoom">
+	    <img src="img/multiexp.png" width="1400px">
+	  </section>
+	  <section>
+	    <h4>Example</h4>
+	    <p>Let $X$ and $Y$ have the pdf:
+	      $$ f(x,y) = 8xy, 0 < x < y < 1 $$
+					   and 0 otherwise.</p>
+					   <br>
+					   <p>Find the expected value of $g(X,Y) = XY^2$.</p>
+					   
+	  </section>
+	 
+	  <section data-background-image="img/homework.jpg" data-background-opacity=".05">
+	   Homework 3 problems: 4.4, 4.12, 4.21, 4.26
+	  </section>
+	</section>
+
+	<section>
+	  <section data-background-image="img/variance.png" data-background-opacity="1">
+	    <h3>Variance: the spread of a distribution</h3>
+	    <p>Variance is the expectation of $u(X) = (X - \mu)^2$.</p>
+	    <p class="fragment"> In simple English: variance is the average of the squared differences from the population mean.</p>
+	  </section>
+	  <section>
+	    <h4>Important:</h4>
+	    <img src="img/th42.png" width="1400px">
+	  </section>
+	   <section>
+	    <h4>Theorem 4.3:</h4>
+	    <img src="img/th43.png" width="1400px">
+	  </section>
+	</section>
+	<section>
+	  <section>
+	    <h3>Covariance</h3>
+	    <p>Covariance is a quantitative measure of the comparison of the change between one variable and its mean and the change between another variable and their mean.</p>
+	    <div class="fragment">
+	      <img src="img/covariance.png" width="700px">
+	      <br>
+	      <small><i><a href="covariance.pdf" target="_blank">source</a></i></small>
+	    </div>
+	  </section>
+	  <section>
+	    <p>So this is a measure of association between two variables.</p>
+	    <p class="fragment">If both $X$ and $Y$ are above (or below) their respective means, they we will have that $$Cov(X,Y) = E[(X - E[X])(Y - E[Y])]$$ is positive.</p>
+	    <p class="fragment">If either $X$ or $Y$ (but not both) is above (or below) its respective mean, then the covariance (same expression as above) will be negative.</p>
+	  </section>
+	  <section data-background-image="img/cassini.gif" data-background-opacity="1">
+	  </section>
+	  <section data-background-image="img/cassini.gif" data-background-opacity=".3">
+	    <h4>NASA cares about covariance</h4>
+	    <p class="fragment">We often have multiple variables influencing the outcome of an experiment!</p>
+	    <div class="fragment">
+	    <img src="img/nasacovariance.png" width="1000px">
+	      <br>
+	      <small><i><a href="cassini.pdf" target="_blank">source</a></i></small>
+	      </div>
+	  </section>
+	  <section>
+	    <h4>We can re-write the covariance formula as:</h4>
+	    <img src="img/covar.png" width="1000px">
+	  </section>
+	  <section>
+	    <h3>The Correlation Coeficient</h3>
+	    <p>For r.v.'s $X$ and $Y$, simply put is the ratio between their covariance and the product of their respective standard deviations.</p>
+	    <p class="fragment">$$ \rho(X,Y) = \frac{Cov(X,Y)}{\sqrt{Var(X)}\sqrt{Var(Y)}} $$</p>
+	    <p class="fragment">This is just a convenient normalization of the covariance done to extract the relevant information, for it gets rid of units and keeps the magnitude in the range [0,1].</p>
+	  </section>
+	  <section data-background-image="img/homework.jpg" data-background-opacity=".05">
+	   More Homework 3 problems: 4.35, 4.50, 4.51, 4.52
+	  </section>
+	</section>
+	</section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+      autoPlayMedia: true,
+      math: {
+      mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+      config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+      },
+      dependencies: [
+      { src: 'plugin/markdown/marked.js' },
+      { src: 'plugin/markdown/markdown.js' },
+      { src: 'plugin/notes/notes.js', async: true },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/math/math.js', async: true }
+      ]
+      });
+    </script>
+  </body>
+</html>
