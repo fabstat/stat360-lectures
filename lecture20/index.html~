@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>STAT 360 Lecture 9</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+	<section>
+	  Linear Combinations of Random Variables and Chebyshev's Theorem
+	  <br><img src="img/cheby.jpg" width="300px"><br>
+	  STAT 360 - Lecture 9
+	</section>
+	<section>
+	  <h3>What we will cover today:</h3>
+	  <ul>
+	    <li class="fragment">The Mean of a Linear Combination of R.V.'s</li>
+	    <li class="fragment">The Variance of a Linear Combination of R.V.'s</li>
+	    <li class="fragment">What about Non-linear Combinations of R.V.'s?</li>
+	    <li class="fragment">Chebyshev's Theorem</li>
+	  </ul>
+	</section>
+	<section>	  
+	  <section>
+	    <h3>The Mean of a Linear Combination of R.V.'s</h3>
+	    <p>Recall the definitions for the expected value of a discrete random variable $X$ and a continuous random variable $Y$, respectively:</p>
+	    <ul>
+	      <li class="fragment">$E[X] = \sum_x xf(x)$</li>
+	      <br>
+	      <li class="fragment">$E[Y] = \int_{-\infty}^{\infty} yf(y)dy$</li>
+	    </ul>
+	  </section>
+	  <section>
+	    <p>Recall from Calculus the linearity properties of summations and integrals:</p>
+	     <ul>
+	      <li class="fragment"><a href="https://en.wikipedia.org/wiki/Summation#Identities" target="_blank">Summation Article on Wikipedia</a></li>
+	      <li class="fragment"><a href="https://en.wikipedia.org/wiki/Integral#Linearity" target="_blank">Integral Article on Wikipedia</a></li>
+	    </ul>
+	  </section>
+	  <section>
+	    <p>Unsurprisingly and easily proved (see textbook or try it yourself) are the following theorems:</p>
+	    <ul>
+	      <li class="fragment">For $a,b$ constants, $E[aX + b] = aE[X] + b$</li>
+	      <li class="fragment">$E[g(X) \pm h(X)] = E[g(X)] \pm E[h(X)]$</li>
+	      <li class="fragment">$E[g(X, Y) \pm h(X, Y)] = E[g(X, Y)] \pm E[h(X, Y)]$</li>
+	    </ul>
+	  </section>
+	  <section>
+	    <p>A little more interesting is Theorem 4.8:</p>
+	    <img src="img/th48.png" width="1400px">
+	    <small class="fragment"><i>Note: not a linear combination! The caveat is that $X$ and $Y$ must be independent.</i></small>
+	  </section>
+	</section>
+	<section>
+	  <section>
+	    <h3>Moving on to Variance...</h3>
+	    <p>Recall the definition of the variance of a random variable $X$:</p>
+	    <p class="fragment">$Var(X) = E[(X - E(X))^2]$</p>
+	  </section>
+	  <section>
+	    <p>Theorem: $Var(aX + b) = a^2Var(X)$</p>
+	    <p class="fragment">Proof: Let $\mu = E[aX+b]$, then $Var(aX + b) = E[((aX+b)-\mu)^2]$</p>
+	    <p class="fragment">$=E[(aX+b)^2 - 2(aX+b)\mu + \mu^2]$</p>
+	    <p class="fragment">$=E[(aX+b)^2] - 2\mu^2 + \mu^2$</p>
+	    <p class="fragment">$=a^2E[X^2]+2abE[X]+b^2 - (aE[X]- b)^2$</p>
+	    <p class="fragment">$=a^2E[X^2]+2abE[X]+b^2 - (a^2(E[X])^2 -2abE[X] +b^2)$</p>
+	  </section>
+	  <section>
+	    <p>$=a^2Var(X)$</p>
+	    <div class="fragment">
+	    <p>Similarly, we can prove the more general theorem:</p>  
+	    <img src="img/th49.png" width="1400px">
+	    <p>which your textbook details, but I recommend as an exercise to perform this proof on your own.</p>
+	    </div>
+	  </section>
+	  <section>
+	    <p>Recall that $cov(X,Y) = Var(XY) = E(XY) - E(X)E(Y)$</p>
+	    <p class="fragment">Now theorem 4.8 states that if $X$ and $Y$ are independent, then $E(XY) = E(X)E(Y)$</p>
+	    <p class="fragment">As we had suspected, if $X$ and $Y$ are independent, then their covariance is 0.</p>
+	  </section>
+	  <section>
+	    <p>And we get the more general corollary to theorem 4.9:</p>
+	    <p class="fragment">If $X_1, X_2, \dots, X_n$ are independent r.v.'s, then $Var(a_1X_1 + a_2X_2 + \dots +a_nX_n) =$
+	      $a_1^2Var(X_1) + a_2^2Var(X_2) + \dots + a_n^2Var(X_n)$</p>
+	    </section>
+	</section>
+	<section>
+	  <section>
+	    <h3>What if the function is nonlinear?</h3>
+	    <p class="fragment">Bad news: no general rule for getting the exact expectation and variance of a random variable $Y = g(X)$ where $g$ is a nonlinear function.</p>
+	    <p class="fragment">Good news: we can use the Taylor series approximation of the nonlinear function $g$ centered at $\mu = E(X)$ to get the approximate expectation and variance of $g(X)$.</p>
+	  </section>
+	  <section data-background-image="img/train.jpeg" data-background-opacity=".2">
+	    <h4>2nd Order Approximation of Expectation</h4>
+	   $$E[g(X)] \approx g(\mu_X) + \left. \frac{d^2g(x)}{dx^2}\right\rvert_{x=\mu_X}\frac{Var(X)}{2}$$
+	  </section>
+	  <section data-background-image="img/train.jpeg" data-background-opacity=".2">
+	    <h4>1st Order Approximation of Variance</h4>
+	    $$Var[g(X)] \approx \left( \frac{dg(x)}{dx}\right)^2_{x=\mu_X}Var(X)$$
+	  </section>
+	  <section>
+	    <img src="img/ex426.png" width="1400px">
+	   </section>
+	</section>
+	<section>
+	  <section data-background-image="img/Chebyshev.png" data-background-opacity=".7">
+	    </section>
+	  <section data-background-image="img/Chebyshev.png" data-background-opacity=".2">
+	    <h3>Chebyshev's Theorem</h3>
+	    <img src="img/chebyth.png" width="1400px">
+	    <a href="https://math.wikia.org/wiki/Proof_of_Chebyshev%27s_inequality" target="_blank"><i>proof</i></a>
+	  </section>
+	 
+	  <section data-background-image="img/homework.jpg" data-background-opacity=".05">
+	    <p>Homework 3 additional problems:</p>
+	    <p>4.58, 4.60, 4.69, 4.75, 4.77</p>
+	  </section>
+	</section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+      autoPlayMedia: true,
+      math: {
+      mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+      config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+      },
+      dependencies: [
+      { src: 'plugin/markdown/marked.js' },
+      { src: 'plugin/markdown/markdown.js' },
+      { src: 'plugin/notes/notes.js', async: true },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/math/math.js', async: true }
+      ]
+      });
+    </script>
+  </body>
+</html>

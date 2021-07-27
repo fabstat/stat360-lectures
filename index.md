@@ -6,3 +6,5 @@
 - [Lecture 14](lecture14/)
 - [Lecture 15](lecture15/)
 - [Lecture 17](lecture17/)
+- [Lecture 19](lecture19/)
+- [Lecture 20](lecture20/)

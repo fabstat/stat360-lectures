@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>STAT 360 Lecture 9</title>
+    <title>STAT 360 Lecture 12</title>
 
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/night.css">
+    <link rel="stylesheet" href="css/theme/solarized.css">
 
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -25,113 +25,195 @@
     <div class="reveal">
       <div class="slides">
 	<section>
-	  Linear Combinations of Random Variables and Chebyshev's Theorem
-	  <br><img src="img/cheby.jpg" width="300px"><br>
-	  STAT 360 - Lecture 9
+	  The Poisson and Other Fish!
+	  <br><img src="img/Poisson.jpg" width="300px"><br>
+	  STAT 360 - Lecture 12
 	</section>
 	<section>
 	  <h3>What we will cover today:</h3>
-	  <ul>
-	    <li class="fragment">The Mean of a Linear Combination of R.V.'s</li>
-	    <li class="fragment">The Variance of a Linear Combination of R.V.'s</li>
-	    <li class="fragment">What about Non-linear Combinations of R.V.'s?</li>
-	    <li class="fragment">Chebyshev's Theorem</li>
-	  </ul>
+	  <ol>
+	    <li class="fragment">Last time in Discretown:
+	      <ul>
+		<li>Negative Binomial</li>
+		<li>Geometric</li>
+		</ul>
+	    <li class="fragment">Poisson Distribution</li>
+	    <li class="fragment">Midterm 1 Review</li>
+	    </ol>
 	</section>
-	<section>	  
-	  <section>
-	    <h3>The Mean of a Linear Combination of R.V.'s</h3>
-	    <p>Recall the definitions for the expected value of a discrete random variable $X$ and a continuous random variable $Y$, respectively:</p>
+	
+	<section>
+	  <section data-background-image="img/nb.png" data-background-opacity=".5"></section>
+	  <section data-background-image="img/nb.png" data-background-opacity=".1">
+	    <h3>Last Time in Discretown!</h3>
+	    <h4>The Negative Binomial</h4>
+	    <p>Some good questions were raised:</p>
 	    <ul>
-	      <li class="fragment">$E[X] = \sum_x xf(x)$</li>
-	      <br>
-	      <li class="fragment">$E[Y] = \int_{-\infty}^{\infty} yf(y)dy$</li>
-	    </ul>
+	      <li class="fragment">What's the deal with ${x - 1  \choose k -1}$?</li>
+	      <li class="fragment">Why is it called negative?</li>
+	      </ul>
+	  </section>
+	  <section data-background-image="img/nb.png" data-background-opacity=".5"></section>
+	  <section data-background-image="img/nb.png" data-background-opacity=".1">
+	    <h4>What's the deal with ${x - 1  \choose k -1}$?</h4>
+	    <p class="fragment">Since the Negative Binomial distribution gives us the probability of having to run $x$ trials in order to get $k$ successes, then when we get the $k^{th}$ success we stop counting on the $x^{th}$ trial.</p>
+	      <p class="fragment">This means that we can choose the prior $k-1$ successes from $x-1$ trials randomly and in whatever order they come.</p> 
+	  </section>
+	   <section data-background-image="img/nb.png" data-background-opacity=".1">
+	    <h4>Why is it called negative?</h4>
+	    <p class="fragment">The formulation we learned from the book counts the number of trials needed to get $k$ successes.</p>
+	    <p class="fragment">There are several different formulations for the same problem. Another is letting $X$ count the number of successes giver $r$ failures: ${k+r-1 \choose k}$.</p>
+	    <p class="fragment">With a little bit of algebra: $\frac{(k+r-1)\dots(r)}{k!} = (-1)^k\frac{(-r)(-r-1)\dots(-r-k+1)}{k!} = (-1)^k{-r \choose k}$.</p>
+	     <p class="fragment">So we are choosing successes from negative failures!</p>
 	  </section>
 	  <section>
-	    <p>Recall from Calculus the linearity properties of summations and integrals:</p>
-	     <ul>
-	      <li class="fragment"><a href="https://en.wikipedia.org/wiki/Summation#Identities" target="_blank">Summation Article on Wikipedia</a></li>
-	      <li class="fragment"><a href="https://en.wikipedia.org/wiki/Integral#Linearity" target="_blank">Integral Article on Wikipedia</a></li>
-	    </ul>
+	    <h4>Expectation and Variance</h4>
+	    <p class="fragment">The expected value of a negative binomial r.v. is: $\mu = \frac{k}{p}$.</p>
+	    <p class="fragment">The variance of a negative binomial r.v. is: $\sigma^2 = \frac{k(1-p)}{p^2}$.</p>
+	    <p class="fragment">The expectation and variance of a geometric r.v. can be obtain from the above by letting $k=1$.</p>
 	  </section>
-	  <section>
-	    <p>Unsurprisingly and easily proved (see textbook or try it yourself) are the following theorems:</p>
-	    <ul>
-	      <li class="fragment">For $a,b$ constants, $E[aX + b] = aE[X] + b$</li>
-	      <li class="fragment">$E[g(X) \pm h(X)] = E[g(X)] \pm E[h(X)]$</li>
-	      <li class="fragment">$E[g(X, Y) \pm h(X, Y)] = E[g(X, Y)] \pm E[h(X, Y)]$</li>
-	    </ul>
+	  <section data-background-image="img/baseball.jpg" data-background-opacity=".1">
+	    <h4>Example</h4>
+	    <p>Team $A$ plays team $B$ in a seven-game world series, so the series is over when either team wins four games.</p>
+	    <p>For each game, $P(A$ wins$) = 0.6$, and the games are assumed independent.</p>
+	    <p>What is the probability that the series will end in exactly six games?</p>
 	  </section>
-	  <section>
-	    <p>A little more interesting is Theorem 4.8:</p>
-	    <img src="img/th48.png" width="1400px">
-	    <small class="fragment"><i>Note: not a linear combination! The caveat is that $X$ and $Y$ must be independent.</i></small>
+	  <section  data-background-image="img/dory.jpg" data-background-opacity=".1">
+	    <h4>No Memory Property</h4>
+	    <p>A special property of the geometric distribution is the no-memory property: If $X \sim Geo(p)$, then $P(X > j + k | X > j) = P(X > k)$.</p>
+	    <p class="fragment">Given the CDF of the geometric distribution $G(x;p) = \sum_{i=1}^x p(1-p)^{i-1} = 1 - (1- p)^x$, for $x = 1,2,3,\dots$ (derived in a previous lecture), prove the no-memory property of the geometric distribution.</p>
 	  </section>
 	</section>
 	<section>
 	  <section>
-	    <h3>Moving on to Variance...</h3>
-	    <p>Recall the definition of the variance of a random variable $X$:</p>
-	    <p class="fragment">$Var(X) = E[(X - E(X))^2]$</p>
-	  </section>
-	  <section>
-	    <p>Theorem: $Var(aX + b) = a^2Var(X)$</p>
-	    <p class="fragment">Proof: Let $\mu = E[aX+b]$, then $Var(aX + b) = E[((aX+b)-\mu)^2]$</p>
-	    <p class="fragment">$=E[(aX+b)^2 - 2(aX+b)\mu + \mu^2]$</p>
-	    <p class="fragment">$=E[(aX+b)^2] - 2\mu^2 + \mu^2$</p>
-	    <p class="fragment">$=a^2E[X^2]+2abE[X]+b^2 - (aE[X]- b)^2$</p>
-	    <p class="fragment">$=a^2E[X^2]+2abE[X]+b^2 - (a^2(E[X])^2 -2abE[X] +b^2)$</p>
-	  </section>
-	  <section>
-	    <p>$=a^2Var(X)$</p>
+	    <h3>The Poisson Distribution</h3>
+	    <p>There are two main characteristics of a Poisson experiment:</p>
 	    <div class="fragment">
-	    <p>Similarly, we can prove the more general theorem:</p>  
-	    <img src="img/th49.png" width="1400px">
-	    <p>which your textbook details, but I recommend as an exercise to perform this proof on your own.</p>
+	      <img src="img/FindingDory.jpg" width="300px">
+	      <p>Wait a minute! Experiments with fish?!?</p>
 	    </div>
+	    <p class="fragment">No Dory...Poisson refers to the distribution...remember...ah...no, ok.</p>
+	  </section>
+	  <section  data-background-image="img/poispmf.png" data-background-opacity=".1">
+	    <h3>The Poisson Distribution</h3>
+	    <p>There are two main characteristics of a Poisson experiment:</p>
+	    <ol>
+	      <li class="fragment">We want to count the number of events occurring in a fixed interval of time or space if these events happen with a known average rate and independently of the time since the last event.</li>
+	      <li class="fragment">We want to approximate a binomial experiment if the probability of success is "small" (such as 0.01) and the number of trials is "large" (such as 1,000).</li>
+	      </ol>
+	  </section>
+	  <section data-background-image="img/mailboxes.jpg" data-background-opacity=".1">
+	    <h4>For example:</h4>
+	    <p>Suppose you typically get 4 pieces of mail per day. That becomes your expectation, but there will be a certain spread: sometimes a little more, sometimes a little less, once in a while nothing at all.</p>
+	    <p class="fragment">Given only the average rate, for a certain period of observation (e.g. pieces of mail per day), and assuming that the process that produce the event flow is essentially random, the Poisson Distribution will tell you how likely it is that you will get 3, or 5, or 11, or any other number, during one period of observation.</p>
 	  </section>
 	  <section>
-	    <p>Recall that $cov(X,Y) = Var(XY) = E(XY) - E(X)E(Y)$</p>
-	    <p class="fragment">Now theorem 4.8 states that if $X$ and $Y$ are independent, then $E(XY) = E(X)E(Y)$</p>
-	    <p class="fragment">As we had suspected, if $X$ and $Y$ are independent, then their covariance is 0.</p>
+	    <p>That is, it predicts the degree of spread around a known average rate of occurrence.</p>
 	  </section>
 	  <section>
-	    <p>And we get the more general corollary to theorem 4.9:</p>
-	    <p class="fragment">If $X_1, X_2, \dots, X_n$ are independent r.v.'s, then $Var(a_1X_1 + a_2X_2 + \dots +a_nX_n) =$
-	      $a_1^2Var(X_1) + a_2^2Var(X_2) + \dots + a_n^2Var(X_n)$</p>
+	    <h4>The Poisson p.m.f.</h4>
+	    <p>Suppose we are watching for events and the number of observed events follows a Poisson distribution with rate $\lambda$. Then</p>
+	    <p class="fragment">$$P(X=x) = \frac{\lambda^xe^{-\lambda}}{x!}$$</p>
+	    <p class="fragment">where $x=0,1,2,\dots$</p>
+	  </section>
+	  <section data-background-image="img/horsekick.jpg" data-background-opacity=".2">
+	    <h4>A Classic Example</h4>
+	    <p>The classic Poisson example is the data set of von Bortkiewicz (1898), for the chance of a Prussian cavalryman being killed by the kick of a horse.</p>
+	    <p class="fragment">Ten army corps were observed over 20 years, giving a total of 200 observations of one corps for a one year period. The total deaths from horse kicks were 122, and the average number of deaths per year per corps was thus 122/200 = 0.61.</p>
+	  </section>
+	  <section data-background-image="img/corphorse.jpg" data-background-opacity=".2">
+	    <p>In any given year, we wouldn't expect to observe exactly 0.61 deaths in one corps (that is not possible; deaths occur in modules of 1), but sometimes none, sometimes one, occasionally two, perhaps once in a while three, and (we might intuitively expect) very rarely any more. </p>
+	  </section>
+	  <section>
+	    <h4>A Classic Poisson Situation</h4>
+	    A rare event, whose average rate is small, with observations made over many small intervals of time.For the entire set of Prussian data, where p = the predicted Poisson frequency for a given number of deaths per year, E is the corresponding number of years in which that number of deaths is expected to occur in our 200 samples (that is, our p value times 200), and A is the actual number of years in which that many deaths were observed, we have:
+	    </section>
+	    <section  data-background-image="img/horsekickbars.png" data-background-opacity=".1">
+	   <table>
+	     <thead>
+	       <tr>
+		 <th>Deaths</th>
+		 <th>p</th>
+		 <th>E</th>
+		 <th>A</th>
+	       </tr>
+	     </thead>
+	     <tbody>
+	       <tr>
+		 <td>0</td>
+		 <td>0.54335</td>
+		 <td>108.67</td>
+		 <td>109</td>
+	       </tr>
+	       <tr>
+		 <td>1</td>
+		 <td>0.33145</td>
+		 <td>66.29</td>
+		 <td>65</td>
+	       </tr>
+	       <tr>
+		 <td>2</td>
+		 <td>0.10110</td>
+		 <td>20.22</td>
+		 <td>22</td>
+	       </tr>
+	       <tr>
+		 <td>3</td>
+		 <td>0.02055</td>
+		 <td>4.11</td>
+		 <td>3</td>
+	       </tr>
+	       <tr>
+		 <td>4</td>
+		 <td>0.00315</td>
+		 <td>0.63</td>
+		 <td>1</td>
+	       </tr>
+	       <tr>
+		 <td>5</td>
+		 <td>0.00040</td>
+		 <td>0.08</td>
+		 <td>0</td>
+	       </tr>
+	       <tr>
+		 <td>6</td>
+		 <td>0.00005</td>
+		 <td>0.01</td>
+		 <td>0</td>
+	       </tr>
+	     </tbody>
+	   </table>
 	    </section>
 	</section>
 	<section>
-	  <section>
-	    <h3>What if the function is nonlinear?</h3>
-	    <p class="fragment">Bad news: no general rule for getting the exact expectation and variance of a random variable $Y = g(X)$ where $g$ is a nonlinear function.</p>
-	    <p class="fragment">Good news: we can use the Taylor series approximation of the nonlinear function $g$ centered at $\mu = E(X)$ to get the approximate expectation and variance of $g(X)$.</p>
+	  <section data-background-image="img/uber.jpg" data-background-opacity=".1">
+	    <h4>Binomial in the Limit</h4>
+	    <p>Uber is interested in solving the following problem: what is the probability of getting one ride request, two ride requests, etc from a particular location?</p>
+	    <p class="fragment">After analyzing historical records, they conclude that the average request per minute is 5. Can they figure out their probability question just from this information?</p>
 	  </section>
-	  <section data-background-image="img/train.jpeg" data-background-opacity=".2">
-	    <h4>2nd Order Approximation of Expectation</h4>
-	   $$E[g(X)] \approx g(\mu_X) + \left. \frac{d^2g(x)}{dx^2}\right\rvert_{x=\mu_X}\frac{Var(X)}{2}$$
-	  </section>
-	  <section data-background-image="img/train.jpeg" data-background-opacity=".2">
-	    <h4>1st Order Approximation of Variance</h4>
-	    $$Var[g(X)] \approx \left( \frac{dg(x)}{dx}\right)^2_{x=\mu_X}Var(X)$$
+	 <section data-background-image="img/uber.jpg" data-background-opacity=".1">
+	    <h4>Binomial in the Limit</h4>
+	    <p>Let $X$ be the number of ride requests in the next minute. Let's find $P(X=k)$ using the binomial distribution!</p>
+	    <p class="fragment">Split the minute into 60 seconds and count "success" for a request coming in a second and "failure" for no request coming in that second. If requests are equally likely, the the probability of success is 5/60.</p>
 	  </section>
 	  <section>
-	    <img src="img/ex426.png" width="1400px">
-	   </section>
-	</section>
-	<section>
-	  <section data-background-image="img/Chebyshev.png" data-background-opacity=".7">
+	    <img src="img/requests.png" width="1400px">
+	    <p class="fragment">Great! so $X \sim Bin(n = 60, p = 5/60)$:</p>
+	    <p class="fragment">$$P(X=k) = {60 \choose k}\left(\frac{5}{60}\right)^k\left(1-\frac{5}{60}\right)^{60-k}$$</p>
+	    <p class="fragment">Uber great! But what if we get 2 request in a second??</p>
+	  </section>
+	  <section>
+	    <small><p>Ok then, cut it in milliseconds!...and don't ask me what if 2 request in a millisecond!!</p>
+	    <p class="fragment">Maybe Uber hires a mathematician to help:</p></small>
+	    <img class="fragment" src="img/inthelimit.png" width="1400px">
 	    </section>
-	  <section data-background-image="img/Chebyshev.png" data-background-opacity=".2">
-	    <h3>Chebyshev's Theorem</h3>
-	    <img src="img/chebyth.png" width="1400px">
-	    <a href="https://math.wikia.org/wiki/Proof_of_Chebyshev%27s_inequality" target="_blank"><i>proof</i></a>
+	  <section>
+	    <h4>Expectation of a Poisson R.V.</h4>
+	    <img src="img/poissonex.png" width="700px">
 	  </section>
-	 
-	  <section data-background-image="img/homework.jpg" data-background-opacity=".05">
-	    <p>Homework 3 additional problems:</p>
-	    <p>4.58, 4.60, 4.69, 4.75, 4.77</p>
+	  <section>
+	    <h4>Variance of a Poisson R.V.</h4>
+	    <img src="img/poisvar.png" width="1400px">
 	  </section>
 	</section>
       </div>
